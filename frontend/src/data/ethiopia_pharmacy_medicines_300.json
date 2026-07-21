@@ -1,0 +1,3002 @@
+[
+  {
+    "id": "MED-001",
+    "generic_name": "Amoxicillin",
+    "form_and_strength": "500mg Capsule",
+    "category": "Antibacterial",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 180,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-002",
+    "generic_name": "Amoxicillin + Clavulanic Acid (Augmentin)",
+    "form_and_strength": "625mg Tablet",
+    "category": "Antibacterial",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 650,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-003",
+    "generic_name": "Ciprofloxacin",
+    "form_and_strength": "500mg Tablet",
+    "category": "Antibacterial",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 150,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-004",
+    "generic_name": "Azithromycin",
+    "form_and_strength": "500mg Tablet",
+    "category": "Antibacterial",
+    "unit_of_measure": "pack of 3",
+    "retail_price_etb": 320,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-005",
+    "generic_name": "Ceftriaxone",
+    "form_and_strength": "1g Powder for Injection",
+    "category": "Antibacterial",
+    "unit_of_measure": "vial",
+    "retail_price_etb": 180,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-006",
+    "generic_name": "Doxycycline",
+    "form_and_strength": "100mg Capsule",
+    "category": "Antibacterial",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 120,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-007",
+    "generic_name": "Metronidazole (Flagyl)",
+    "form_and_strength": "250mg Tablet",
+    "category": "Anti-infective",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 80,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-008",
+    "generic_name": "Cotrimoxazole (Bactrim)",
+    "form_and_strength": "480mg Tablet",
+    "category": "Antibacterial",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 90,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-009",
+    "generic_name": "Ampicillin",
+    "form_and_strength": "500mg Injection",
+    "category": "Antibacterial",
+    "unit_of_measure": "vial",
+    "retail_price_etb": 110,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-010",
+    "generic_name": "Cloxacillin",
+    "form_and_strength": "500mg Capsule",
+    "category": "Antibacterial",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 160,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-011",
+    "generic_name": "Cefixime",
+    "form_and_strength": "200mg Tablet",
+    "category": "Antibacterial",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 420,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-012",
+    "generic_name": "Cefuroxime",
+    "form_and_strength": "500mg Tablet",
+    "category": "Antibacterial",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 580,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-013",
+    "generic_name": "Erythromycin",
+    "form_and_strength": "250mg Tablet",
+    "category": "Antibacterial",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 140,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-014",
+    "generic_name": "Clindamycin",
+    "form_and_strength": "150mg Capsule",
+    "category": "Antibacterial",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 350,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-015",
+    "generic_name": "Gentamicin",
+    "form_and_strength": "80mg/2ml Injection",
+    "category": "Antibacterial",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 70,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-016",
+    "generic_name": "Penicillin G Benzathine",
+    "form_and_strength": "2.4 MIU Injection",
+    "category": "Antibacterial",
+    "unit_of_measure": "vial",
+    "retail_price_etb": 220,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-017",
+    "generic_name": "Procaine Penicillin",
+    "form_and_strength": "4 MIU Injection",
+    "category": "Antibacterial",
+    "unit_of_measure": "vial",
+    "retail_price_etb": 150,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-018",
+    "generic_name": "Chloramphenicol",
+    "form_and_strength": "250mg Capsule",
+    "category": "Antibacterial",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 110,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-019",
+    "generic_name": "Nitrofurantoin",
+    "form_and_strength": "100mg Tablet",
+    "category": "UTI Treatment",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 240,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-020",
+    "generic_name": "Levofloxacin",
+    "form_and_strength": "500mg Tablet",
+    "category": "Antibacterial",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 380,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-021",
+    "generic_name": "Paracetamol",
+    "form_and_strength": "500mg Tablet",
+    "category": "Analgesic / Antipyretic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 30,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-022",
+    "generic_name": "Ibuprofen",
+    "form_and_strength": "400mg Tablet",
+    "category": "NSAID / Analgesic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 60,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-023",
+    "generic_name": "Diclofenac Sodium",
+    "form_and_strength": "50mg Tablet",
+    "category": "NSAID / Pain",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 50,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-024",
+    "generic_name": "Diclofenac Sodium",
+    "form_and_strength": "75mg/3ml Injection",
+    "category": "NSAID / Pain",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 45,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-025",
+    "generic_name": "Tramadol",
+    "form_and_strength": "50mg Capsule",
+    "category": "Opioid Analgesic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 120,
+    "requires_prescription": true,
+    "storage_condition": "locked_cabinet"
+  },
+  {
+    "id": "MED-026",
+    "generic_name": "Acetylsalicylic Acid (Aspirin)",
+    "form_and_strength": "100mg Tablet",
+    "category": "Antiplatelet / Pain",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 40,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-027",
+    "generic_name": "Meloxicam",
+    "form_and_strength": "15mg Tablet",
+    "category": "NSAID / Joints",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 180,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-028",
+    "generic_name": "Naproxen",
+    "form_and_strength": "500mg Tablet",
+    "category": "NSAID / Pain",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 220,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-029",
+    "generic_name": "Celecoxib",
+    "form_and_strength": "200mg Capsule",
+    "category": "NSAID / Joints",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 350,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-030",
+    "generic_name": "Indomethacin",
+    "form_and_strength": "25mg Capsule",
+    "category": "NSAID / Gout",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 85,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-031",
+    "generic_name": "Pethidine",
+    "form_and_strength": "50mg/ml Injection",
+    "category": "Controlled Analgesic",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 450,
+    "requires_prescription": true,
+    "storage_condition": "locked_cabinet"
+  },
+  {
+    "id": "MED-032",
+    "generic_name": "Morphine Sulphate",
+    "form_and_strength": "10mg Tablet",
+    "category": "Controlled Analgesic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 500,
+    "requires_prescription": true,
+    "storage_condition": "locked_cabinet"
+  },
+  {
+    "id": "MED-033",
+    "generic_name": "Allopurinol",
+    "form_and_strength": "100mg Tablet",
+    "category": "Gout Medication",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 140,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-034",
+    "generic_name": "Paracetamol Syrup",
+    "form_and_strength": "120mg/5ml (100ml)",
+    "category": "Pediatric Analgesic",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 110,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-035",
+    "generic_name": "Ibuprofen Syrup",
+    "form_and_strength": "100mg/5ml (100ml)",
+    "category": "Pediatric Analgesic",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 140,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-036",
+    "generic_name": "Omeprazole",
+    "form_and_strength": "20mg Capsule",
+    "category": "Antacid / PPI",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 110,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-037",
+    "generic_name": "Pantoprazole",
+    "form_and_strength": "40mg Tablet",
+    "category": "Antacid / PPI",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 190,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-038",
+    "generic_name": "Esomeprazole",
+    "form_and_strength": "40mg Tablet",
+    "category": "Antacid / PPI",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 280,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-039",
+    "generic_name": "Aluminum + Magnesium Hydroxide",
+    "form_and_strength": "200ml Suspension",
+    "category": "Antacid",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 180,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-040",
+    "generic_name": "Ranitidine",
+    "form_and_strength": "150mg Tablet",
+    "category": "H2 Antagonist",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 90,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-041",
+    "generic_name": "Hyoscine Butylbromide (Buscopan)",
+    "form_and_strength": "10mg Tablet",
+    "category": "Antispasmodic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 85,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-042",
+    "generic_name": "Metoclopramide",
+    "form_and_strength": "10mg Tablet",
+    "category": "Antiemetic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 45,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-043",
+    "generic_name": "Ondansetron",
+    "form_and_strength": "4mg Tablet",
+    "category": "Antiemetic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 260,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-044",
+    "generic_name": "Oral Rehydration Salt (ORS)",
+    "form_and_strength": "Sachet for 1L",
+    "category": "Anti-Diarrheal",
+    "unit_of_measure": "sachet",
+    "retail_price_etb": 25,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-045",
+    "generic_name": "Zinc Sulphate",
+    "form_and_strength": "20mg Tablet",
+    "category": "Diarrhea Management",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 60,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-046",
+    "generic_name": "Loperamide",
+    "form_and_strength": "2mg Capsule",
+    "category": "Anti-Diarrheal",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 50,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-047",
+    "generic_name": "Bisacodyl",
+    "form_and_strength": "5mg Tablet",
+    "category": "Laxative",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 65,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-048",
+    "generic_name": "Lactulose",
+    "form_and_strength": "Syrup 10g/15ml (200ml)",
+    "category": "Laxative",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 380,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-049",
+    "generic_name": "Activated Charcoal",
+    "form_and_strength": "250mg Tablet",
+    "category": "Antiflatulent / Antidote",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 70,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-050",
+    "generic_name": "Liquid Paraffin",
+    "form_and_strength": "100ml Bottle",
+    "category": "Laxative",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 120,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-051",
+    "generic_name": "Amlodipine",
+    "form_and_strength": "5mg Tablet",
+    "category": "Antihypertensive",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 120,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-052",
+    "generic_name": "Amlodipine",
+    "form_and_strength": "10mg Tablet",
+    "category": "Antihypertensive",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 180,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-053",
+    "generic_name": "Enalapril",
+    "form_and_strength": "5mg Tablet",
+    "category": "Antihypertensive",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 95,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-054",
+    "generic_name": "Captopril",
+    "form_and_strength": "25mg Tablet",
+    "category": "Antihypertensive",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 80,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-055",
+    "generic_name": "Atenolol",
+    "form_and_strength": "50mg Tablet",
+    "category": "Antihypertensive",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 110,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-056",
+    "generic_name": "Losartan",
+    "form_and_strength": "50mg Tablet",
+    "category": "Antihypertensive",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 210,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-057",
+    "generic_name": "Valsartan",
+    "form_and_strength": "80mg Tablet",
+    "category": "Antihypertensive",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 290,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-058",
+    "generic_name": "Hydrochlorothiazide (HCT)",
+    "form_and_strength": "25mg Tablet",
+    "category": "Diuretic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 60,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-059",
+    "generic_name": "Furosemide (Lasix)",
+    "form_and_strength": "40mg Tablet",
+    "category": "Diuretic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 70,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-060",
+    "generic_name": "Spironolactone",
+    "form_and_strength": "25mg Tablet",
+    "category": "Diuretic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 160,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-061",
+    "generic_name": "Propranolol",
+    "form_and_strength": "40mg Tablet",
+    "category": "Beta-blocker",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 90,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-062",
+    "generic_name": "Atorvastatin",
+    "form_and_strength": "20mg Tablet",
+    "category": "Lipid-Lowering",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 320,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-063",
+    "generic_name": "Simvastatin",
+    "form_and_strength": "20mg Tablet",
+    "category": "Lipid-Lowering",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 210,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-064",
+    "generic_name": "Methyldopa",
+    "form_and_strength": "250mg Tablet",
+    "category": "Antihypertensive (Pregnancy)",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 240,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-065",
+    "generic_name": "Nifedipine",
+    "form_and_strength": "20mg Retard Tablet",
+    "category": "Antihypertensive",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 130,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-066",
+    "generic_name": "Digoxin",
+    "form_and_strength": "0.25mg Tablet",
+    "category": "Cardiac Glycoside",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 180,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-067",
+    "generic_name": "Hydralazine",
+    "form_and_strength": "25mg Tablet",
+    "category": "Antihypertensive",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 220,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-068",
+    "generic_name": "Bisoprolol",
+    "form_and_strength": "5mg Tablet",
+    "category": "Beta-blocker",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 240,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-069",
+    "generic_name": "Glyceryl Trinitrate (Nitroglycerin)",
+    "form_and_strength": "0.5mg Sublingual Tab",
+    "category": "Antianginal",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 350,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-070",
+    "generic_name": "Carvedilol",
+    "form_and_strength": "6.25mg Tablet",
+    "category": "Beta-blocker",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 190,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-071",
+    "generic_name": "Metformin",
+    "form_and_strength": "500mg Tablet",
+    "category": "Antidiabetic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 110,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-072",
+    "generic_name": "Metformin",
+    "form_and_strength": "850mg Tablet",
+    "category": "Antidiabetic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 160,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-073",
+    "generic_name": "Glibenclamide",
+    "form_and_strength": "5mg Tablet",
+    "category": "Antidiabetic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 75,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-074",
+    "generic_name": "Gliclazide",
+    "form_and_strength": "80mg Tablet",
+    "category": "Antidiabetic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 220,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-075",
+    "generic_name": "Glimepiride",
+    "form_and_strength": "2mg Tablet",
+    "category": "Antidiabetic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 240,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-076",
+    "generic_name": "Insulin Soluble (Regular)",
+    "form_and_strength": "100 IU/ml Vial",
+    "category": "Antidiabetic (Cold Chain)",
+    "unit_of_measure": "vial",
+    "retail_price_etb": 650,
+    "requires_prescription": true,
+    "storage_condition": "refrigerated_2_to_8C"
+  },
+  {
+    "id": "MED-077",
+    "generic_name": "Insulin Isophane (NPH)",
+    "form_and_strength": "100 IU/ml Vial",
+    "category": "Antidiabetic (Cold Chain)",
+    "unit_of_measure": "vial",
+    "retail_price_etb": 680,
+    "requires_prescription": true,
+    "storage_condition": "refrigerated_2_to_8C"
+  },
+  {
+    "id": "MED-078",
+    "generic_name": "Premixed Insulin (30/70)",
+    "form_and_strength": "100 IU/ml Vial",
+    "category": "Antidiabetic (Cold Chain)",
+    "unit_of_measure": "vial",
+    "retail_price_etb": 720,
+    "requires_prescription": true,
+    "storage_condition": "refrigerated_2_to_8C"
+  },
+  {
+    "id": "MED-079",
+    "generic_name": "Prednisolone",
+    "form_and_strength": "5mg Tablet",
+    "category": "Corticosteroid",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 80,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-080",
+    "generic_name": "Dexamethasone",
+    "form_and_strength": "0.5mg Tablet",
+    "category": "Corticosteroid",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 60,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-081",
+    "generic_name": "Dexamethasone",
+    "form_and_strength": "4mg/ml Injection",
+    "category": "Corticosteroid",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 50,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-082",
+    "generic_name": "Hydrocortisone",
+    "form_and_strength": "100mg Injection",
+    "category": "Corticosteroid",
+    "unit_of_measure": "vial",
+    "retail_price_etb": 180,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-083",
+    "generic_name": "Thyroxine Sodium (Levothyroxine)",
+    "form_and_strength": "50mcg Tablet",
+    "category": "Thyroid Hormone",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 190,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-084",
+    "generic_name": "Propylthiouracil (PTU)",
+    "form_and_strength": "50mg Tablet",
+    "category": "Antithyroid",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 310,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-085",
+    "generic_name": "Glibenclamide + Metformin",
+    "form_and_strength": "5mg/500mg Tablet",
+    "category": "Antidiabetic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 280,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-086",
+    "generic_name": "Salbutamol",
+    "form_and_strength": "100mcg Inhaler",
+    "category": "Bronchodilator",
+    "unit_of_measure": "inhaler",
+    "retail_price_etb": 350,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-087",
+    "generic_name": "Salbutamol",
+    "form_and_strength": "2mg/5ml Syrup (100ml)",
+    "category": "Bronchodilator",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 110,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-088",
+    "generic_name": "Salbutamol",
+    "form_and_strength": "4mg Tablet",
+    "category": "Bronchodilator",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 50,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-089",
+    "generic_name": "Beclomethasone Dipropionate",
+    "form_and_strength": "100mcg Inhaler",
+    "category": "Antiasthmatic Corticosteroid",
+    "unit_of_measure": "inhaler",
+    "retail_price_etb": 580,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-090",
+    "generic_name": "Aminophylline",
+    "form_and_strength": "100mg Tablet",
+    "category": "Bronchodilator",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 85,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-091",
+    "generic_name": "Theophylline",
+    "form_and_strength": "200mg Retard Tablet",
+    "category": "Bronchodilator",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 140,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-092",
+    "generic_name": "Dextromethorphan",
+    "form_and_strength": "15mg/5ml Syrup",
+    "category": "Antitussive",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 160,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-093",
+    "generic_name": "Guaifenesin",
+    "form_and_strength": "Expectorant Syrup",
+    "category": "Expectorant",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 130,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-094",
+    "generic_name": "Cetirizine",
+    "form_and_strength": "10mg Tablet",
+    "category": "Antihistamine",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 70,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-095",
+    "generic_name": "Loratadine",
+    "form_and_strength": "10mg Tablet",
+    "category": "Antihistamine",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 90,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-096",
+    "generic_name": "Chlorpheniramine Maleate",
+    "form_and_strength": "4mg Tablet",
+    "category": "Antihistamine",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 30,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-097",
+    "generic_name": "Diphenhydramine Compound",
+    "form_and_strength": "Cough Syrup (100ml)",
+    "category": "Antihistamine / Cough",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 140,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-098",
+    "generic_name": "Promethazine",
+    "form_and_strength": "25mg Tablet",
+    "category": "Antihistamine",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 65,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-099",
+    "generic_name": "Montelukast",
+    "form_and_strength": "10mg Tablet",
+    "category": "Antiasthmatic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 420,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-100",
+    "generic_name": "Prednisolone Syrup",
+    "form_and_strength": "15mg/5ml (60ml)",
+    "category": "Pediatric Corticosteroid",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 260,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-101",
+    "generic_name": "Fluconazole",
+    "form_and_strength": "150mg Capsule",
+    "category": "Antifungal",
+    "unit_of_measure": "pack of 1",
+    "retail_price_etb": 140,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-102",
+    "generic_name": "Ketoconazole",
+    "form_and_strength": "200mg Tablet",
+    "category": "Antifungal",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 180,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-103",
+    "generic_name": "Griseofulvin",
+    "form_and_strength": "500mg Tablet",
+    "category": "Antifungal",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 220,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-104",
+    "generic_name": "Nystatin",
+    "form_and_strength": "100,000 IU/ml Oral Drop",
+    "category": "Antifungal",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 130,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-105",
+    "generic_name": "Clotrimazole",
+    "form_and_strength": "1% Topical Cream (20g)",
+    "category": "Topical Antifungal",
+    "unit_of_measure": "tube",
+    "retail_price_etb": 90,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-106",
+    "generic_name": "Clotrimazole",
+    "form_and_strength": "100mg Vaginal Pessary",
+    "category": "Antifungal",
+    "unit_of_measure": "pack",
+    "retail_price_etb": 160,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-107",
+    "generic_name": "Miconazole",
+    "form_and_strength": "2% Oral Gel",
+    "category": "Antifungal",
+    "unit_of_measure": "tube",
+    "retail_price_etb": 180,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-108",
+    "generic_name": "Terbinafine",
+    "form_and_strength": "250mg Tablet",
+    "category": "Antifungal",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 450,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-109",
+    "generic_name": "Acyclovir",
+    "form_and_strength": "200mg Tablet",
+    "category": "Antiviral",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 280,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-110",
+    "generic_name": "Acyclovir",
+    "form_and_strength": "5% Ointment (5g)",
+    "category": "Topical Antiviral",
+    "unit_of_measure": "tube",
+    "retail_price_etb": 140,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-111",
+    "generic_name": "Albendazole",
+    "form_and_strength": "400mg Chewing Tablet",
+    "category": "Anthelminthic",
+    "unit_of_measure": "tablet",
+    "retail_price_etb": 40,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-112",
+    "generic_name": "Mebendazole",
+    "form_and_strength": "100mg Tablet",
+    "category": "Anthelminthic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 45,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-113",
+    "generic_name": "Ivermectin",
+    "form_and_strength": "3mg Tablet",
+    "category": "Anthelminthic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 180,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-114",
+    "generic_name": "Praziquantel",
+    "form_and_strength": "600mg Tablet",
+    "category": "Anti-schistosomal",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 220,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-115",
+    "generic_name": "Artemether + Lumefantrine (Coartem)",
+    "form_and_strength": "20mg/120mg Tablet",
+    "category": "Antimalarial",
+    "unit_of_measure": "pack",
+    "retail_price_etb": 180,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-116",
+    "generic_name": "Artesunate",
+    "form_and_strength": "60mg Injection",
+    "category": "Antimalarial",
+    "unit_of_measure": "vial",
+    "retail_price_etb": 320,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-117",
+    "generic_name": "Quinine Sulphate",
+    "form_and_strength": "300mg Tablet",
+    "category": "Antimalarial",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 240,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-118",
+    "generic_name": "Tinidazole",
+    "form_and_strength": "500mg Tablet",
+    "category": "Antiprotozoal",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 120,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-119",
+    "generic_name": "Artesunate Suppository",
+    "form_and_strength": "100mg",
+    "category": "Pediatric Antimalarial",
+    "unit_of_measure": "pack",
+    "retail_price_etb": 210,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-120",
+    "generic_name": "Chloroquine Phosphate",
+    "form_and_strength": "250mg Tablet",
+    "category": "Antimalarial",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 90,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-121",
+    "generic_name": "Diazepam",
+    "form_and_strength": "5mg Tablet",
+    "category": "Anxiolytic / Anticonvulsant",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 70,
+    "requires_prescription": true,
+    "storage_condition": "locked_cabinet"
+  },
+  {
+    "id": "MED-122",
+    "generic_name": "Diazepam",
+    "form_and_strength": "10mg/2ml Injection",
+    "category": "Anxiolytic / Emergency",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 65,
+    "requires_prescription": true,
+    "storage_condition": "locked_cabinet"
+  },
+  {
+    "id": "MED-123",
+    "generic_name": "Phenobarbital",
+    "form_and_strength": "30mg Tablet",
+    "category": "Anticonvulsant",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 80,
+    "requires_prescription": true,
+    "storage_condition": "locked_cabinet"
+  },
+  {
+    "id": "MED-124",
+    "generic_name": "Carbamazepine",
+    "form_and_strength": "200mg Tablet",
+    "category": "Anticonvulsant",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 160,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-125",
+    "generic_name": "Sodium Valproate",
+    "form_and_strength": "200mg Tablet",
+    "category": "Anticonvulsant",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 290,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-126",
+    "generic_name": "Phenytoin Sodium",
+    "form_and_strength": "100mg Capsule",
+    "category": "Anticonvulsant",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 190,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-127",
+    "generic_name": "Amitriptyline",
+    "form_and_strength": "25mg Tablet",
+    "category": "Antidepressant",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 80,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-128",
+    "generic_name": "Fluoxetine",
+    "form_and_strength": "20mg Capsule",
+    "category": "Antidepressant",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 210,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-129",
+    "generic_name": "Haloperidol",
+    "form_and_strength": "5mg Tablet",
+    "category": "Antipsychotic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 130,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-130",
+    "generic_name": "Chlorpromazine",
+    "form_and_strength": "25mg Tablet",
+    "category": "Antipsychotic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 95,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-131",
+    "generic_name": "Risperidone",
+    "form_and_strength": "2mg Tablet",
+    "category": "Antipsychotic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 340,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-132",
+    "generic_name": "Olanzapine",
+    "form_and_strength": "5mg Tablet",
+    "category": "Antipsychotic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 380,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-133",
+    "generic_name": "Lorazepam",
+    "form_and_strength": "1mg Tablet",
+    "category": "Anxiolytic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 110,
+    "requires_prescription": true,
+    "storage_condition": "locked_cabinet"
+  },
+  {
+    "id": "MED-134",
+    "generic_name": "Benzhexol (Trihexyphenidyl)",
+    "form_and_strength": "2mg Tablet",
+    "category": "Antiparkinsonian",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 90,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-135",
+    "generic_name": "Levodopa + Carbidopa",
+    "form_and_strength": "250mg/25mg Tablet",
+    "category": "Antiparkinsonian",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 650,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-136",
+    "generic_name": "Ferrous Sulphate",
+    "form_and_strength": "200mg Tablet",
+    "category": "Iron Supplement",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 40,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-137",
+    "generic_name": "Folic Acid",
+    "form_and_strength": "5mg Tablet",
+    "category": "Vitamin Supplement",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 35,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-138",
+    "generic_name": "Ferrous Sulphate + Folic Acid",
+    "form_and_strength": "Combined Tablet",
+    "category": "Prenatal Supplement",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 60,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-139",
+    "generic_name": "Vitamin B-Complex",
+    "form_and_strength": "Tablet",
+    "category": "Vitamin Supplement",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 50,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-140",
+    "generic_name": "Vitamin C (Ascorbic Acid)",
+    "form_and_strength": "500mg Chewable",
+    "category": "Vitamin Supplement",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 60,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-141",
+    "generic_name": "Vitamin D3 (Cholecalciferol)",
+    "form_and_strength": "50,000 IU Capsule",
+    "category": "Vitamin Supplement",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 320,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-142",
+    "generic_name": "Vitamin B12 (Cyanocobalamin)",
+    "form_and_strength": "1000mcg/ml Injection",
+    "category": "Vitamin Supplement",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 80,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-143",
+    "generic_name": "Calcium Carbonate",
+    "form_and_strength": "500mg Tablet",
+    "category": "Mineral Supplement",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 90,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-144",
+    "generic_name": "Calcium + Vitamin D3",
+    "form_and_strength": "Combined Tablet",
+    "category": "Mineral Supplement",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 220,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-145",
+    "generic_name": "Multivitamin Drops",
+    "form_and_strength": "15ml Drops",
+    "category": "Pediatric Supplement",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 160,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-146",
+    "generic_name": "Multivitamin Syrup",
+    "form_and_strength": "100ml Syrup",
+    "category": "Pediatric Supplement",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 210,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-147",
+    "generic_name": "Vitamin A",
+    "form_and_strength": "200,000 IU Capsule",
+    "category": "Supplement",
+    "unit_of_measure": "capsule",
+    "retail_price_etb": 40,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-148",
+    "generic_name": "Vitamin K1 (Phytomenadione)",
+    "form_and_strength": "10mg/ml Injection",
+    "category": "Coagulant",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 120,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-149",
+    "generic_name": "Zinc Gluconate",
+    "form_and_strength": "50mg Tablet",
+    "category": "Supplement",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 180,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-150",
+    "generic_name": "Magnesium Oxide",
+    "form_and_strength": "400mg Tablet",
+    "category": "Supplement",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 210,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-151",
+    "generic_name": "Tetracycline",
+    "form_and_strength": "1% Eye Ointment (3.5g)",
+    "category": "Ophthalmic Antibacterial",
+    "unit_of_measure": "tube",
+    "retail_price_etb": 65,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-152",
+    "generic_name": "Chloramphenicol",
+    "form_and_strength": "0.5% Eye Drops (10ml)",
+    "category": "Ophthalmic Antibacterial",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 80,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-153",
+    "generic_name": "Ciprofloxacin",
+    "form_and_strength": "0.3% Eye Drops (5ml)",
+    "category": "Ophthalmic Antibacterial",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 120,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-154",
+    "generic_name": "Gentamicin",
+    "form_and_strength": "0.3% Eye/Ear Drops",
+    "category": "Ophthalmic/Otic",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 90,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-155",
+    "generic_name": "Dexamethasone",
+    "form_and_strength": "0.1% Eye Drops (5ml)",
+    "category": "Ophthalmic Anti-inflammatory",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 110,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-156",
+    "generic_name": "Timolol Maleate",
+    "form_and_strength": "0.5% Eye Drops (5ml)",
+    "category": "Anti-Glaucoma",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 220,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-157",
+    "generic_name": "Atropine Sulphate",
+    "form_and_strength": "1% Eye Drops (5ml)",
+    "category": "Mydriatic",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 140,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-158",
+    "generic_name": "Artificial Tears",
+    "form_and_strength": "Lubricant Eye Drops (10ml)",
+    "category": "Ophthalmic Lubricant",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 260,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-159",
+    "generic_name": "Oxymetazoline",
+    "form_and_strength": "0.05% Nasal Spray",
+    "category": "Nasal Decongestant",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 190,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-160",
+    "generic_name": "Normal Saline",
+    "form_and_strength": "0.9% Nasal Drops (10ml)",
+    "category": "Nasal Cleanser",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 75,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-161",
+    "generic_name": "Hydrocortisone",
+    "form_and_strength": "1% Topical Cream (15g)",
+    "category": "Topical Steroid",
+    "unit_of_measure": "tube",
+    "retail_price_etb": 80,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-162",
+    "generic_name": "Betamethasone Valerate",
+    "form_and_strength": "0.1% Cream (15g)",
+    "category": "Topical Steroid",
+    "unit_of_measure": "tube",
+    "retail_price_etb": 120,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-163",
+    "generic_name": "Clobetasol Propionate",
+    "form_and_strength": "0.05% Ointment (15g)",
+    "category": "Topical Steroid",
+    "unit_of_measure": "tube",
+    "retail_price_etb": 160,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-164",
+    "generic_name": "Silver Sulfadiazine",
+    "form_and_strength": "1% Burn Cream (50g)",
+    "category": "Topical Antibacterial",
+    "unit_of_measure": "tube",
+    "retail_price_etb": 220,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-165",
+    "generic_name": "Permethrin",
+    "form_and_strength": "5% Lotion (60ml)",
+    "category": "Anti-scabies",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 180,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-166",
+    "generic_name": "Calamine",
+    "form_and_strength": "Lotion (100ml)",
+    "category": "Topical Antipruritic",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 130,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-167",
+    "generic_name": "Benzoic Acid + Salicylic Acid",
+    "form_and_strength": "Whitfield's Ointment",
+    "category": "Topical Antifungal",
+    "unit_of_measure": "jar",
+    "retail_price_etb": 95,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-168",
+    "generic_name": "Zinc Oxide",
+    "form_and_strength": "Ointment (30g)",
+    "category": "Skin Protectant",
+    "unit_of_measure": "tube",
+    "retail_price_etb": 85,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-169",
+    "generic_name": "Povidone Iodine",
+    "form_and_strength": "10% Solution (100ml)",
+    "category": "Antiseptic",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 140,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-170",
+    "generic_name": "Hydrogen Peroxide",
+    "form_and_strength": "3% Solution (100ml)",
+    "category": "Antiseptic",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 60,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-171",
+    "generic_name": "Medical Alcohol (Ethanol)",
+    "form_and_strength": "70% Solution (250ml)",
+    "category": "Antiseptic",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 90,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-172",
+    "generic_name": "Gentian Violet",
+    "form_and_strength": "1% Solution (25ml)",
+    "category": "Topical Antiseptic",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 40,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-173",
+    "generic_name": "Salicylic Acid",
+    "form_and_strength": "2% Ointment",
+    "category": "Keratolytic",
+    "unit_of_measure": "tube",
+    "retail_price_etb": 110,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-174",
+    "generic_name": "Fusidic Acid",
+    "form_and_strength": "2% Cream (15g)",
+    "category": "Topical Antibacterial",
+    "unit_of_measure": "tube",
+    "retail_price_etb": 240,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-175",
+    "generic_name": "Neomycin + Polymyxin B",
+    "form_and_strength": "Skin Ointment",
+    "category": "Topical Antibacterial",
+    "unit_of_measure": "tube",
+    "retail_price_etb": 130,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-176",
+    "generic_name": "Combined Oral Contraceptive",
+    "form_and_strength": "Ethinylestradiol + Levonorgestrel",
+    "category": "Hormonal Contraceptive",
+    "unit_of_measure": "cycle pack",
+    "retail_price_etb": 50,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-177",
+    "generic_name": "Progestin-Only Pill (POP)",
+    "form_and_strength": "Levonorgestrel 0.03mg",
+    "category": "Hormonal Contraceptive",
+    "unit_of_measure": "cycle pack",
+    "retail_price_etb": 60,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-178",
+    "generic_name": "Emergency Contraceptive",
+    "form_and_strength": "Levonorgestrel 1.5mg",
+    "category": "Emergency Contraceptive",
+    "unit_of_measure": "pack of 1",
+    "retail_price_etb": 150,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-179",
+    "generic_name": "Depot Medroxyprogesterone",
+    "form_and_strength": "150mg/ml Injectable",
+    "category": "Injectable Contraceptive",
+    "unit_of_measure": "vial",
+    "retail_price_etb": 180,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-180",
+    "generic_name": "Oxytocin",
+    "form_and_strength": "10 IU/ml Injection",
+    "category": "Uterotonic",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 110,
+    "requires_prescription": true,
+    "storage_condition": "refrigerated_2_to_8C"
+  },
+  {
+    "id": "MED-181",
+    "generic_name": "Misoprostol",
+    "form_and_strength": "200mcg Tablet",
+    "category": "Prostaglandin Analog",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 350,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-182",
+    "generic_name": "Magnesium Sulphate",
+    "form_and_strength": "50% Injection (10ml)",
+    "category": "Anticonvulsant (Eclampsia)",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 140,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-183",
+    "generic_name": "Methyergometrine",
+    "form_and_strength": "0.2mg/ml Injection",
+    "category": "Uterotonic",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 95,
+    "requires_prescription": true,
+    "storage_condition": "refrigerated_2_to_8C"
+  },
+  {
+    "id": "MED-184",
+    "generic_name": "Clomiphene Citrate",
+    "form_and_strength": "50mg Tablet",
+    "category": "Fertility Agent",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 580,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-185",
+    "generic_name": "Aspirin Low Dose",
+    "form_and_strength": "75mg Tablet",
+    "category": "Preeclampsia Prevention",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 45,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-186",
+    "generic_name": "Normal Saline (0.9% NaCl)",
+    "form_and_strength": "500ml Infusion",
+    "category": "Intravenous Fluid",
+    "unit_of_measure": "bag",
+    "retail_price_etb": 120,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-187",
+    "generic_name": "Dextrose 5% in Water",
+    "form_and_strength": "500ml Infusion",
+    "category": "Intravenous Fluid",
+    "unit_of_measure": "bag",
+    "retail_price_etb": 120,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-188",
+    "generic_name": "Dextrose 40%",
+    "form_and_strength": "20ml Ampoule",
+    "category": "Emergency IV Glucose",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 80,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-189",
+    "generic_name": "Ringer's Lactate",
+    "form_and_strength": "500ml Infusion",
+    "category": "Intravenous Fluid",
+    "unit_of_measure": "bag",
+    "retail_price_etb": 130,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-190",
+    "generic_name": "Potassium Chloride",
+    "form_and_strength": "15% Injection (10ml)",
+    "category": "Electrolyte Supplement",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 90,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-191",
+    "generic_name": "Sodium Bicarbonate",
+    "form_and_strength": "8.4% Injection",
+    "category": "Electrolyte Balance",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 140,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-192",
+    "generic_name": "Calcium Gluconate",
+    "form_and_strength": "10% Injection (10ml)",
+    "category": "Mineral Supplement",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 110,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-193",
+    "generic_name": "Water for Injection",
+    "form_and_strength": "10ml Ampoule",
+    "category": "Diluent",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 20,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-194",
+    "generic_name": "Dextrose 10% in Water",
+    "form_and_strength": "500ml Infusion",
+    "category": "Intravenous Fluid",
+    "unit_of_measure": "bag",
+    "retail_price_etb": 130,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-195",
+    "generic_name": "Saline 0.45% (Half Normal)",
+    "form_and_strength": "500ml Infusion",
+    "category": "Intravenous Fluid",
+    "unit_of_measure": "bag",
+    "retail_price_etb": 125,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-196",
+    "generic_name": "Atropine Sulphate",
+    "form_and_strength": "1mg/ml Injection",
+    "category": "Anticholinergic / Antidote",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 60,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-197",
+    "generic_name": "Adrenaline (Epinephrine)",
+    "form_and_strength": "1mg/ml Injection",
+    "category": "Emergency Anaphylaxis",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 110,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-198",
+    "generic_name": "Naloxone",
+    "form_and_strength": "0.4mg/ml Injection",
+    "category": "Opioid Antidote",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 480,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-199",
+    "generic_name": "Lidocaine HCl",
+    "form_and_strength": "2% Injection (20ml)",
+    "category": "Local Anesthetic",
+    "unit_of_measure": "vial",
+    "retail_price_etb": 95,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-200",
+    "generic_name": "Lidocaine + Adrenaline",
+    "form_and_strength": "2% Dental Cartridge",
+    "category": "Local Anesthetic",
+    "unit_of_measure": "cartridge",
+    "retail_price_etb": 130,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-201",
+    "generic_name": "Bupivacaine",
+    "form_and_strength": "0.5% Heavy Injection",
+    "category": "Spinal Anesthetic",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 280,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-202",
+    "generic_name": "Isoflurane",
+    "form_and_strength": "100ml Liquid Volatile",
+    "category": "Inhalation Anesthetic",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 2400,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-203",
+    "generic_name": "Ketamine HCl",
+    "form_and_strength": "50mg/ml Injection (10ml)",
+    "category": "Anesthetic",
+    "unit_of_measure": "vial",
+    "retail_price_etb": 320,
+    "requires_prescription": true,
+    "storage_condition": "locked_cabinet"
+  },
+  {
+    "id": "MED-204",
+    "generic_name": "Propofol",
+    "form_and_strength": "10mg/ml Injection (20ml)",
+    "category": "Anesthetic",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 420,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-205",
+    "generic_name": "Suxamethonium (Succinylcholine)",
+    "form_and_strength": "50mg/ml Injection",
+    "category": "Neuromuscular Blocker",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 180,
+    "requires_prescription": true,
+    "storage_condition": "refrigerated_2_to_8C"
+  },
+  {
+    "id": "MED-206",
+    "generic_name": "Neostigmine",
+    "form_and_strength": "0.5mg/ml Injection",
+    "category": "Reversal Agent",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 140,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-207",
+    "generic_name": "Heparin Sodium",
+    "form_and_strength": "5000 IU/ml Injection",
+    "category": "Anticoagulant",
+    "unit_of_measure": "vial",
+    "retail_price_etb": 380,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-208",
+    "generic_name": "Warfarin Sodium",
+    "form_and_strength": "5mg Tablet",
+    "category": "Anticoagulant",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 160,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-209",
+    "generic_name": "Enoxaparin (Clexane)",
+    "form_and_strength": "40mg Pre-filled Syringe",
+    "category": "Low Molecular Weight Heparin",
+    "unit_of_measure": "syringe",
+    "retail_price_etb": 850,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-210",
+    "generic_name": "Tranexamic Acid",
+    "form_and_strength": "500mg Injection",
+    "category": "Antifibrinolytic",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 220,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-211",
+    "generic_name": "Tranexamic Acid",
+    "form_and_strength": "500mg Tablet",
+    "category": "Antifibrinolytic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 380,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-212",
+    "generic_name": "Phytomenadione (Vit K1)",
+    "form_and_strength": "10mg Tablet",
+    "category": "Antidote for Warfarin",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 160,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-213",
+    "generic_name": "Clopidogrel",
+    "form_and_strength": "75mg Tablet",
+    "category": "Antiplatelet",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 260,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-214",
+    "generic_name": "Methotrexate",
+    "form_and_strength": "2.5mg Tablet",
+    "category": "Immunosuppressant",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 420,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-215",
+    "generic_name": "Azathioprine",
+    "form_and_strength": "50mg Tablet",
+    "category": "Immunosuppressant",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 680,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-216",
+    "generic_name": "Cyclophosphamide",
+    "form_and_strength": "50mg Tablet",
+    "category": "Cytotoxic Agent",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 850,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-217",
+    "generic_name": "Tamoxifen",
+    "form_and_strength": "20mg Tablet",
+    "category": "Hormone Therapy (Oncology)",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 520,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-218",
+    "generic_name": "Arimindex (Anastrozole)",
+    "form_and_strength": "1mg Tablet",
+    "category": "Hormone Therapy (Oncology)",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 1400,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-219",
+    "generic_name": "Finasteride",
+    "form_and_strength": "5mg Tablet",
+    "category": "BPH Agent",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 340,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-220",
+    "generic_name": "Tamsulosin",
+    "form_and_strength": "0.4mg Capsule",
+    "category": "BPH Agent",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 420,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-221",
+    "generic_name": "Sildenafil",
+    "form_and_strength": "50mg Tablet",
+    "category": "Erectile Dysfunction",
+    "unit_of_measure": "pack",
+    "retail_price_etb": 180,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-222",
+    "generic_name": "Tadalafil",
+    "form_and_strength": "20mg Tablet",
+    "category": "Erectile Dysfunction",
+    "unit_of_measure": "pack",
+    "retail_price_etb": 290,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-223",
+    "generic_name": "Nitrofurantoin Syrup",
+    "form_and_strength": "25mg/5ml (100ml)",
+    "category": "Pediatric Antibacterial",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 280,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-224",
+    "generic_name": "Cephalexin",
+    "form_and_strength": "250mg Capsule",
+    "category": "Antibacterial",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 140,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-225",
+    "generic_name": "Cephalexin Syrup",
+    "form_and_strength": "125mg/5ml (100ml)",
+    "category": "Pediatric Antibacterial",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 180,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-226",
+    "generic_name": "Cefaclor",
+    "form_and_strength": "250mg Capsule",
+    "category": "Antibacterial",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 310,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-227",
+    "generic_name": "Cefotaxime",
+    "form_and_strength": "1g Injection",
+    "category": "Antibacterial",
+    "unit_of_measure": "vial",
+    "retail_price_etb": 210,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-228",
+    "generic_name": "Meropenem",
+    "form_and_strength": "1g Injection",
+    "category": "Broad-Spectrum Antibacterial",
+    "unit_of_measure": "vial",
+    "retail_price_etb": 1200,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-229",
+    "generic_name": "Vancomycin",
+    "form_and_strength": "500mg Injection",
+    "category": "Glycopeptide Antibacterial",
+    "unit_of_measure": "vial",
+    "retail_price_etb": 850,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-230",
+    "generic_name": "Piperacillin + Tazobactam",
+    "form_and_strength": "4.5g Injection",
+    "category": "Broad-Spectrum Antibacterial",
+    "unit_of_measure": "vial",
+    "retail_price_etb": 1600,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-231",
+    "generic_name": "Amikacin",
+    "form_and_strength": "500mg/2ml Injection",
+    "category": "Aminoglycoside",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 220,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-232",
+    "generic_name": "Lincomycin",
+    "form_and_strength": "500mg Capsule",
+    "category": "Antibacterial",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 160,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-233",
+    "generic_name": "Spiramycin",
+    "form_and_strength": "1.5 MIU Tablet",
+    "category": "Antibacterial",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 340,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-234",
+    "generic_name": "Rifampicin + Isoniazid",
+    "form_and_strength": "150mg/75mg Tablet",
+    "category": "Antitubercular",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 220,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-235",
+    "generic_name": "Ethambutol",
+    "form_and_strength": "400mg Tablet",
+    "category": "Antitubercular",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 180,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-236",
+    "generic_name": "Pyrazinamide",
+    "form_and_strength": "500mg Tablet",
+    "category": "Antitubercular",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 210,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-237",
+    "generic_name": "Acyclovir",
+    "form_and_strength": "400mg Tablet",
+    "category": "Antiviral",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 420,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-238",
+    "generic_name": "Valacyclovir",
+    "form_and_strength": "500mg Tablet",
+    "category": "Antiviral",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 780,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-239",
+    "generic_name": "Tenofovir Disoproxil",
+    "form_and_strength": "300mg Tablet",
+    "category": "Antiretroviral / HBV",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 450,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-240",
+    "generic_name": "Lamivudine",
+    "form_and_strength": "150mg Tablet",
+    "category": "Antiretroviral / HBV",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 320,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-241",
+    "generic_name": "Efavirenz",
+    "form_and_strength": "600mg Tablet",
+    "category": "Antiretroviral",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 480,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-242",
+    "generic_name": "Dolutegravir",
+    "form_and_strength": "50mg Tablet",
+    "category": "Antiretroviral",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 550,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-243",
+    "generic_name": "Atazanavir + Ritonavir",
+    "form_and_strength": "300mg/100mg Tablet",
+    "category": "Antiretroviral",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 820,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-244",
+    "generic_name": "Fluconazole",
+    "form_and_strength": "2mg/ml IV Infusion (100ml)",
+    "category": "Antifungal",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 380,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-245",
+    "generic_name": "Amphotericin B",
+    "form_and_strength": "50mg Injection",
+    "category": "Antifungal",
+    "unit_of_measure": "vial",
+    "retail_price_etb": 1800,
+    "requires_prescription": true,
+    "storage_condition": "refrigerated_2_to_8C"
+  },
+  {
+    "id": "MED-246",
+    "generic_name": "Itraconazole",
+    "form_and_strength": "100mg Capsule",
+    "category": "Antifungal",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 420,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-247",
+    "generic_name": "Permethrin",
+    "form_and_strength": "1% Shampoo (60ml)",
+    "category": "Anti-lice",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 160,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-248",
+    "generic_name": "Malathion",
+    "form_and_strength": "0.5% Lotion",
+    "category": "Anti-lice",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 140,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-249",
+    "generic_name": "Hydrocortisone",
+    "form_and_strength": "1% Ointment (15g)",
+    "category": "Topical Steroid",
+    "unit_of_measure": "tube",
+    "retail_price_etb": 85,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-250",
+    "generic_name": "Betamethasone Dipropionate",
+    "form_and_strength": "0.05% Ointment",
+    "category": "Topical Steroid",
+    "unit_of_measure": "tube",
+    "retail_price_etb": 140,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-251",
+    "generic_name": "Tacrolimus",
+    "form_and_strength": "0.03% Ointment (10g)",
+    "category": "Immunomodulator",
+    "unit_of_measure": "tube",
+    "retail_price_etb": 850,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-252",
+    "generic_name": "Coal Tar",
+    "form_and_strength": "Solution Shampoo",
+    "category": "Anti-psoriasis",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 320,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-253",
+    "generic_name": "Benzoyl Peroxide",
+    "form_and_strength": "5% Gel (30g)",
+    "category": "Anti-acne",
+    "unit_of_measure": "tube",
+    "retail_price_etb": 240,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-254",
+    "generic_name": "Adapalene",
+    "form_and_strength": "0.1% Gel (30g)",
+    "category": "Anti-acne",
+    "unit_of_measure": "tube",
+    "retail_price_etb": 380,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-255",
+    "generic_name": "Isotretinoin",
+    "form_and_strength": "10mg Capsule",
+    "category": "Anti-acne",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 650,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-256",
+    "generic_name": "Tretinoin",
+    "form_and_strength": "0.05% Cream (20g)",
+    "category": "Anti-acne",
+    "unit_of_measure": "tube",
+    "retail_price_etb": 220,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-257",
+    "generic_name": "Mupirocin",
+    "form_and_strength": "2% Ointment (5g)",
+    "category": "Topical Antibacterial",
+    "unit_of_measure": "tube",
+    "retail_price_etb": 190,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-258",
+    "generic_name": "Silver Nitrate",
+    "form_and_strength": "Pencil / Solution",
+    "category": "Topical Cautery Agent",
+    "unit_of_measure": "unit",
+    "retail_price_etb": 180,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-259",
+    "generic_name": "Bismuth Subgallate Compound",
+    "form_and_strength": "Suppository",
+    "category": "Anti-hemorrhoidal",
+    "unit_of_measure": "pack",
+    "retail_price_etb": 180,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-260",
+    "generic_name": "Anusol Cream",
+    "form_and_strength": "Cream (25g)",
+    "category": "Anti-hemorrhoidal",
+    "unit_of_measure": "tube",
+    "retail_price_etb": 220,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-261",
+    "generic_name": "Sodium Chloride 3%",
+    "form_and_strength": "Hypertonic IV (500ml)",
+    "category": "Electrolyte Solution",
+    "unit_of_measure": "bag",
+    "retail_price_etb": 180,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-262",
+    "generic_name": "Mannitol",
+    "form_and_strength": "20% Infusion (350ml)",
+    "category": "Osmotic Diuretic",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 320,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-263",
+    "generic_name": "Dextran 70",
+    "form_and_strength": "6% in Normal Saline",
+    "category": "Plasma Expander",
+    "unit_of_measure": "bag",
+    "retail_price_etb": 450,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-264",
+    "generic_name": "Compound Sodium Lactate",
+    "form_and_strength": "Hartmann's Solution",
+    "category": "Intravenous Fluid",
+    "unit_of_measure": "bag",
+    "retail_price_etb": 135,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-265",
+    "generic_name": "Glucose 5% + NaCl 0.9%",
+    "form_and_strength": "Maintenance IV (500ml)",
+    "category": "Intravenous Fluid",
+    "unit_of_measure": "bag",
+    "retail_price_etb": 125,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-266",
+    "generic_name": "Pyridoxine (Vit B6)",
+    "form_and_strength": "50mg Tablet",
+    "category": "Vitamin Supplement",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 45,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-267",
+    "generic_name": "Thiamine (Vit B1)",
+    "form_and_strength": "100mg Tablet",
+    "category": "Vitamin Supplement",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 50,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-268",
+    "generic_name": "Alpha Tocopherol (Vit E)",
+    "form_and_strength": "400 IU Capsule",
+    "category": "Antioxidant Supplement",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 180,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-269",
+    "generic_name": "Folic Acid",
+    "form_and_strength": "1mg Tablet",
+    "category": "Supplement",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 30,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-270",
+    "generic_name": "Zinc Acetate",
+    "form_and_strength": "50mg Tablet",
+    "category": "Supplement",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 160,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-271",
+    "generic_name": "Potassium Citrate",
+    "form_and_strength": "Oral Solution",
+    "category": "Urinary Alkalinizer",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 240,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-272",
+    "generic_name": "Hyoscine Hydrobromide",
+    "form_and_strength": "0.6mg Injection",
+    "category": "Antispasmodic",
+    "unit_of_measure": "ampoule",
+    "retail_price_etb": 80,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-273",
+    "generic_name": "Atropine Sulphate",
+    "form_and_strength": "0.6mg Tablet",
+    "category": "Antispasmodic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 60,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-274",
+    "generic_name": "Dicyclomine HCl",
+    "form_and_strength": "10mg Tablet",
+    "category": "Antispasmodic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 55,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-275",
+    "generic_name": "Chlordiazepoxide + Clidinium",
+    "form_and_strength": "Librax Equivalent Tab",
+    "category": "Anti-ulcer / Antispasmodic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 140,
+    "requires_prescription": true,
+    "storage_condition": "locked_cabinet"
+  },
+  {
+    "id": "MED-276",
+    "generic_name": "Domperidone",
+    "form_and_strength": "10mg Tablet",
+    "category": "Prokinetic / Antiemetic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 95,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-277",
+    "generic_name": "Meclizine + Vit B6",
+    "form_and_strength": "Antivert Tablet",
+    "category": "Anti-vertigo",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 110,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-278",
+    "generic_name": "Betahistine",
+    "form_and_strength": "16mg Tablet",
+    "category": "Anti-vertigo",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 280,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-279",
+    "generic_name": "Cinnarizine",
+    "form_and_strength": "25mg Tablet",
+    "category": "Anti-vertigo",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 85,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-280",
+    "generic_name": "Flunarizine",
+    "form_and_strength": "5mg Tablet",
+    "category": "Migraine Prophylaxis",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 120,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-281",
+    "generic_name": "Sumatriptan",
+    "form_and_strength": "50mg Tablet",
+    "category": "Antimigraine",
+    "unit_of_measure": "pack of 2",
+    "retail_price_etb": 450,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-282",
+    "generic_name": "Ergotamine + Caffeine",
+    "form_and_strength": "Cafergot Equivalent",
+    "category": "Antimigraine",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 160,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-283",
+    "generic_name": "Pilocarpine",
+    "form_and_strength": "2% Eye Drops (5ml)",
+    "category": "Anti-Glaucoma",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 180,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-284",
+    "generic_name": "Latanoprost",
+    "form_and_strength": "0.005% Eye Drops",
+    "category": "Anti-Glaucoma",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 680,
+    "requires_prescription": true,
+    "storage_condition": "refrigerated_2_to_8C"
+  },
+  {
+    "id": "MED-285",
+    "generic_name": "Brimonidine",
+    "form_and_strength": "0.2% Eye Drops",
+    "category": "Anti-Glaucoma",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 520,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-286",
+    "generic_name": "Dorzolamide",
+    "form_and_strength": "2% Eye Drops",
+    "category": "Anti-Glaucoma",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 480,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-287",
+    "generic_name": "Ofloxacin",
+    "form_and_strength": "0.3% Otic Drops",
+    "category": "Ear Anti-infective",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 140,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-288",
+    "generic_name": "Clotrimazole",
+    "form_and_strength": "1% Otic Drops",
+    "category": "Ear Antifungal",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 120,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-289",
+    "generic_name": "Olive Oil Ear Drops",
+    "form_and_strength": "10ml Bottle",
+    "category": "Cerumenolytic",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 90,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-290",
+    "generic_name": "Fluticasone Furoate",
+    "form_and_strength": "Nasal Spray",
+    "category": "Antihistamine Spray",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 480,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-291",
+    "generic_name": "Budesonide",
+    "form_and_strength": "200mcg Inhaler",
+    "category": "Antiasthmatic Steroid",
+    "unit_of_measure": "inhaler",
+    "retail_price_etb": 620,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-292",
+    "generic_name": "Ipratropium Bromide",
+    "form_and_strength": "Inhaler",
+    "category": "Bronchodilator",
+    "unit_of_measure": "inhaler",
+    "retail_price_etb": 540,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-293",
+    "generic_name": "Formoterol + Budesonide",
+    "form_and_strength": "Symbicort Equivalent",
+    "category": "Antiasthmatic Combination",
+    "unit_of_measure": "inhaler",
+    "retail_price_etb": 850,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-294",
+    "generic_name": "Tiotropium",
+    "form_and_strength": "Inhalation Powder",
+    "category": "COPD Management",
+    "unit_of_measure": "pack",
+    "retail_price_etb": 920,
+    "requires_prescription": true,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-295",
+    "generic_name": "Carbocisteine",
+    "form_and_strength": "250mg/5ml Syrup",
+    "category": "Mucolytic",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 180,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-296",
+    "generic_name": "Bromhexine",
+    "form_and_strength": "8mg Tablet",
+    "category": "Mucolytic",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 70,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-297",
+    "generic_name": "Acetylcysteine",
+    "form_and_strength": "200mg Sachet",
+    "category": "Mucolytic",
+    "unit_of_measure": "pack",
+    "retail_price_etb": 120,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-298",
+    "generic_name": "Menthol + Camphor",
+    "form_and_strength": "Inhaler Stick",
+    "category": "Nasal Decongestant",
+    "unit_of_measure": "piece",
+    "retail_price_etb": 50,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-299",
+    "generic_name": "Throat Lozenges (Dequalinium)",
+    "form_and_strength": "Dequalin Equivalent",
+    "category": "Antiseptic Lozenge",
+    "unit_of_measure": "strip",
+    "retail_price_etb": 80,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  },
+  {
+    "id": "MED-300",
+    "generic_name": "Benzydamine",
+    "form_and_strength": "Oral Spray / Gargle",
+    "category": "Topical Oral Analgesic",
+    "unit_of_measure": "bottle",
+    "retail_price_etb": 210,
+    "requires_prescription": false,
+    "storage_condition": "room_temperature"
+  }
+]
