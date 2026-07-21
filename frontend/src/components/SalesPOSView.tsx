@@ -324,9 +324,9 @@ export default function SalesPOSView({
               ))}
             </div>
 
-            <button onClick={handleCheckout} className="btn btn-primary" style={{ width: '100%', padding: '0.8rem', fontSize: '1rem' }}>
-              <CheckCircle size={18} />
-              {t('pos.processTransaction')}
+            <button onClick={handleCheckout} className="btn btn-primary" style={{ width: '100%', padding: '0.8rem', fontSize: '1.1rem', fontWeight: 700, gap: '0.5rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <ShoppingCart size={20} />
+              {t('pos.sell') || 'Sell'}
             </button>
           </div>
         </div>
