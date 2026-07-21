@@ -66,29 +66,33 @@ export default function App() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setAuthLoading(true);
+    setLoginError('');
     try {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: loginEmail, password: loginPassword, role: loginRole })
       });
-      
+
+      // Safely parse response — server may return non-JSON on crash
+      const text = await res.text();
+      let data: any = {};
+      try { data = JSON.parse(text); } catch { /* non-JSON body */ }
+
       if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error || 'Login failed');
+        throw new Error(data.error || `Server error (${res.status}). Please check credentials or contact admin.`);
       }
 
-      const { user, token } = await res.json();
+      const { user, token } = data;
+      if (!user || !token) throw new Error('Invalid server response. Please try again.');
+
       localStorage.setItem('auth_token', token);
       setCurrentUser(user);
-      setLoginError('');
       if (user.role === 'Cashier' || user.role === 'Pharmacist') {
         setCurrentTab('sales-pos');
       } else {
         setCurrentTab('dashboard');
       }
-      
-      // Load initial data upon login
       fetchData();
     } catch (err: any) {
       setLoginError(err.message || t('auth.error'));
@@ -96,6 +100,7 @@ export default function App() {
       setAuthLoading(false);
     }
   };
+
 
   const handleLogout = () => {
     setCurrentUser(null);
