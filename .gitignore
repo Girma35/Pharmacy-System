@@ -1,0 +1,27 @@
+# Environment variables (secrets!)
+backend/.env
+
+# Migration file (one-time setup, not needed in repo)
+backend/supabase-migration.sql
+
+# Dependencies
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+
+# Build outputs
+frontend/dist/
+backend/dist/
+
+# IDE & OS files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
