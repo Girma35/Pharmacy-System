@@ -15,7 +15,6 @@ export default function SettingsView({
   const [address, setAddress] = useState(settings.address);
   const [phone, setPhone] = useState(settings.phone);
   const [email, setEmail] = useState(settings.email);
-  const [taxRate, setTaxRate] = useState(settings.taxRate);
   const [currency, setCurrency] = useState(settings.currency);
   const [receiptFooter, setReceiptFooter] = useState(settings.receiptFooter);
 
@@ -26,7 +25,6 @@ export default function SettingsView({
       address,
       phone,
       email,
-      taxRate: Number(taxRate),
       currency,
       receiptFooter
     });
@@ -37,7 +35,7 @@ export default function SettingsView({
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({
       version: "1.0",
       timestamp: new Date().toISOString(),
-      settings: { pharmacyName, address, phone, email, taxRate, currency, receiptFooter }
+      settings: { pharmacyName, address, phone, email, currency, receiptFooter }
     }));
     const downloadAnchor = document.createElement('a');
     downloadAnchor.setAttribute("href", dataStr);
@@ -63,7 +61,6 @@ export default function SettingsView({
               setAddress(parsed.settings.address);
               setPhone(parsed.settings.phone);
               setEmail(parsed.settings.email);
-              setTaxRate(parsed.settings.taxRate);
               setCurrency(parsed.settings.currency);
               setReceiptFooter(parsed.settings.receiptFooter);
               alert('Settings successfully restored from backup file!');
@@ -119,11 +116,7 @@ export default function SettingsView({
 
           <div className="form-row">
             <div className="form-group">
-              <label>VAT Tax Rate (%)</label>
-              <input required type="number" min="0" max="100" step="0.1" className="form-control" value={taxRate} onChange={e => setTaxRate(Number(e.target.value))} />
-            </div>
-            <div className="form-group">
-              <label>Local Currency Symbol</label>
+              <label>Currency Symbol</label>
               <input required type="text" className="form-control" value={currency} onChange={e => setCurrency(e.target.value)} />
             </div>
           </div>

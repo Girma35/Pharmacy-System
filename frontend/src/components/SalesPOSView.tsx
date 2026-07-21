@@ -13,7 +13,6 @@ interface SalesPOSViewProps {
     items: SaleItem[];
     subtotal: number;
     discount: number;
-    tax: number;
     total: number;
     paymentMethod: 'Cash' | 'Bank Transfer';
   }) => void;

@@ -272,8 +272,8 @@ export default function App() {
     <div className="app-container">
       <Sidebar 
         currentTab={currentTab} 
-        onTabChange={setCurrentTab} 
-        userRole={currentUser.role}
+        setCurrentTab={setCurrentTab} 
+        currentUser={currentUser}
         onLogout={handleLogout}
       />
       <div className="main-content">
@@ -283,7 +283,7 @@ export default function App() {
           </div>
         ) : (
           <>
-            {currentTab === 'dashboard' && <DashboardView medicines={medicines} sales={sales} />}
+            {currentTab === 'dashboard' && <DashboardView medicines={medicines} sales={sales} purchases={purchases} suppliers={suppliers} customers={customers} setCurrentTab={setCurrentTab} />}
             {currentTab === 'sales-pos' && (
               <SalesPOSView 
                 medicines={medicines} 
@@ -305,17 +305,15 @@ export default function App() {
             {currentTab === 'inventory' && (
               <InventoryView 
                 medicines={medicines} 
-                logs={inventoryLogs}
-                purchases={purchases}
-                onAddPurchase={handleAddPurchase}
+                inventoryLogs={inventoryLogs}
               />
             )}
-            {currentTab === 'suppliers' && <SuppliersView suppliers={suppliers} />}
-            {currentTab === 'customers' && <CustomersView customers={customers} />}
-            {currentTab === 'prescriptions' && <PrescriptionsView prescriptions={prescriptions} />}
+            {currentTab === 'suppliers' && <SuppliersView suppliers={suppliers} purchaseOrders={purchases} medicines={medicines} onAddSupplier={() => {}} onAddPurchaseOrder={() => {}} onPaySupplier={() => {}} />}
+            {currentTab === 'customers' && <CustomersView customers={customers} sales={sales} onAddCustomer={() => {}} />}
+            {currentTab === 'prescriptions' && <PrescriptionsView prescriptions={prescriptions} customers={customers} medicines={medicines} onAddPrescription={() => {}} />}
             {currentTab === 'reports' && <ReportsView sales={sales} />}
-            {currentTab === 'users' && <UserManagementView users={users} />}
-            {currentTab === 'settings' && <SettingsView settings={settings} onUpdateSettings={setSettings} />}
+            {currentTab === 'users' && <UserManagementView users={users} onAddUser={() => {}} onUpdateUserStatus={() => {}} />}
+            {currentTab === 'settings' && <SettingsView settings={settings} onSaveSettings={setSettings} />}
           </>
         )}
       </div>
