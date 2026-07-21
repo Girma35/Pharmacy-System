@@ -12,6 +12,9 @@
     "om": "Afaan Oromoo"
   },
   "auth": {
+    "title": "Seensa Hojjetaa",
+    "subtitle": "Eenyummeessaa keessaniin seenaa",
+    "loginBtn": "Seeni",
     "signIn": "Seeni",
     "signOut": "Ba'i",
     "email": "Teessoo Imeelii Hojjetaa",

@@ -12,6 +12,9 @@
     "om": "Afaan Oromoo"
   },
   "auth": {
+    "title": "Staff Portal Login",
+    "subtitle": "Sign in with your assigned credentials",
+    "loginBtn": "Access System",
     "signIn": "Sign In",
     "signOut": "Sign Out",
     "email": "Staff Email Address",
