@@ -126,29 +126,64 @@ export default function ReportsView({ sales }: ReportsViewProps) {
           <h3 style={{ marginBottom: '1rem', fontSize: '1.1rem' }}>
             {period} Transactions
           </h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            {filteredSales.slice(0, 10).map(sale => (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            {filteredSales.slice(0, 20).map(sale => (
               <div
                 key={sale.id}
                 style={{
-                  padding: '0.75rem 1rem',
+                  padding: '1rem 1.25rem',
                   backgroundColor: '#f8fafc',
-                  borderRadius: 'var(--radius-sm)',
-                  borderLeft: '4px solid var(--accent-color)'
+                  borderRadius: 'var(--radius-md)',
+                  borderLeft: '4px solid var(--accent-color)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0.35rem'
                 }}
               >
-                {sale.items.map((item, idx) => (
-                  <div key={idx} style={{ fontSize: '0.85rem', color: 'var(--text-primary)', marginLeft: '0.5rem' }}>
-                    {item.name} x{item.qty}
+                {/* Top row: date + total */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
+                    🕐 {new Date(sale.createdAt).toLocaleDateString('en-GB')} {new Date(sale.createdAt).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}
+                  </span>
+                  <span style={{ fontWeight: 800, color: 'var(--success)', fontSize: '1rem' }}>
+                    +{sale.total.toLocaleString()} ETB
+                  </span>
+                </div>
+
+                {/* Customer & cashier */}
+                <div style={{ display: 'flex', gap: '1rem', fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+                  <span>👤 {sale.customerName || 'Walk-in'}</span>
+                  <span>💊 {sale.userName || 'Pharmacist'}</span>
+                  <span style={{ marginLeft: 'auto' }}>💳 {sale.paymentMethod || 'Cash'}</span>
+                </div>
+
+                {/* Medicine items */}
+                {sale.items && sale.items.length > 0 ? (
+                  <div style={{ marginTop: '0.25rem', display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+                    {sale.items.map((item: any, idx: number) => (
+                      <div key={idx} style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        fontSize: '0.85rem',
+                        padding: '0.2rem 0.5rem',
+                        backgroundColor: '#fff',
+                        borderRadius: 'var(--radius-sm)',
+                        border: '1px solid var(--border-color)'
+                      }}>
+                        <span style={{ fontWeight: 500 }}>
+                          {item.name}
+                        </span>
+                        <span style={{ color: 'var(--text-secondary)', whiteSpace: 'nowrap', marginLeft: '0.5rem' }}>
+                          x{item.qty} × {Number(item.price).toLocaleString()} ETB
+                        </span>
+                      </div>
+                    ))}
                   </div>
-                ))}
-                <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '0.25rem', marginLeft: '0.5rem' }}>
-                  {new Date(sale.createdAt).toLocaleDateString('en-GB')} {new Date(sale.createdAt).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.25rem', marginLeft: '0.5rem' }}>
-                  <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{sale.paymentMethod}</span>
-                  <span style={{ fontWeight: 700, color: 'var(--success)', fontSize: '1rem' }}>+${sale.total.toFixed(2)}</span>
-                </div>
+                ) : (
+                  <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontStyle: 'italic' }}>
+                    No item details available
+                  </div>
+                )}
               </div>
             ))}
           </div>
