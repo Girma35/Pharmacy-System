@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Sidebar from './components/Sidebar';
 import LanguageSelectionScreen from './components/LanguageSelectionScreen';
@@ -24,14 +24,6 @@ import {
   Prescription,
   InventoryLog,
   SystemSettings,
-  initialMedicines,
-  initialSuppliers,
-  initialCustomers,
-  initialUsers,
-  initialSales,
-  initialPurchases,
-  initialPrescriptions,
-  initialInventoryLogs,
   defaultSettings
 } from './data/mockData';
 import { Pill, Lock, Mail } from 'lucide-react';
@@ -43,397 +35,290 @@ export default function App() {
   const [languageSelected, setLanguageSelected] = useState(() => !!localStorage.getItem('pharmacy-language'));
 
   // Auth State
-  const [currentUser, setCurrentUser] = useState<User | null>(initialUsers[0]);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [loginError, setLoginError] = useState('');
+  const [authLoading, setAuthLoading] = useState(false);
 
   // App Tabs State
   const [currentTab, setCurrentTab] = useState('dashboard');
 
   // Database States
-  const [medicines, setMedicines] = useState<Medicine[]>(initialMedicines);
-  const [suppliers, setSuppliers] = useState<Supplier[]>(initialSuppliers);
-  const [customers, setCustomers] = useState<Customer[]>(initialCustomers);
-  const [users, setUsers] = useState<User[]>(initialUsers);
-  const [sales, setSales] = useState<Sale[]>(initialSales);
-  const [purchases, setPurchases] = useState<PurchaseOrder[]>(initialPurchases);
-  const [prescriptions, setPrescriptions] = useState<Prescription[]>(initialPrescriptions);
-  const [inventoryLogs, setInventoryLogs] = useState<InventoryLog[]>(initialInventoryLogs);
+  const [medicines, setMedicines] = useState<Medicine[]>([]);
+  const [suppliers, setSuppliers] = useState<Supplier[]>([]);
+  const [customers, setCustomers] = useState<Customer[]>([]);
+  const [users, setUsers] = useState<User[]>([]); // Need an endpoint for users if managing them, else empty for now
+  const [sales, setSales] = useState<Sale[]>([]);
+  const [purchases, setPurchases] = useState<PurchaseOrder[]>([]);
+  const [prescriptions, setPrescriptions] = useState<Prescription[]>([]);
+  const [inventoryLogs, setInventoryLogs] = useState<InventoryLog[]>([]);
   const [settings, setSettings] = useState<SystemSettings>(defaultSettings);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Show Language Selection first
   if (!languageSelected) {
     return <LanguageSelectionScreen onLanguageSelected={() => setLanguageSelected(true)} />;
   }
 
-  // Auth Submit Action
-  const handleLogin = (e: React.FormEvent) => {
+  // Auth Submit Action (Now calls Backend)
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    const foundUser = users.find(u => u.email.toLowerCase() === loginEmail.toLowerCase() && u.status === 'Active');
-    if (foundUser) {
-      setCurrentUser(foundUser);
+    setAuthLoading(true);
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: loginEmail, password: loginPassword })
+      });
+      
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || 'Login failed');
+      }
+
+      const { user, token } = await res.json();
+      localStorage.setItem('auth_token', token);
+      setCurrentUser(user);
       setLoginError('');
-      if (foundUser.role === 'Cashier' || foundUser.role === 'Pharmacist') {
+      if (user.role === 'Cashier' || user.role === 'Pharmacist') {
         setCurrentTab('sales-pos');
       } else {
         setCurrentTab('dashboard');
       }
-    } else {
-      setLoginError(t('auth.error'));
+      
+      // Load initial data upon login
+      fetchData();
+    } catch (err: any) {
+      setLoginError(err.message || t('auth.error'));
+    } finally {
+      setAuthLoading(false);
     }
   };
 
   const handleLogout = () => {
     setCurrentUser(null);
+    localStorage.removeItem('auth_token');
     setLoginEmail('');
     setLoginPassword('');
+    // Clear state
+    setMedicines([]);
+    setSuppliers([]);
+    setCustomers([]);
+    setSales([]);
+    setPrescriptions([]);
   };
 
-  // CRUD & Stock Actions
-  const handleAddMedicine = (newMed: Omit<Medicine, 'id'>) => {
-    const med: Medicine = {
-      ...newMed,
-      id: (medicines.length + 1).toString()
-    };
-    setMedicines([...medicines, med]);
-    const newLog: InventoryLog = {
-      id: (inventoryLogs.length + 1).toString(),
-      medicineId: med.id,
-      medicineName: med.name,
-      type: 'Stock In',
-      qty: med.stockQty,
-      reason: 'New product cataloged',
-      userName: currentUser?.name || 'System',
-      createdAt: new Date().toISOString()
-    };
-    setInventoryLogs(prev => [...prev, newLog]);
+  // Fetch all necessary data from the backend
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const [medsRes, suppsRes, custsRes, salesRes, prescRes] = await Promise.all([
+        fetch('/api/medicines').then(r => r.json()),
+        fetch('/api/suppliers').then(r => r.json()),
+        fetch('/api/customers').then(r => r.json()),
+        fetch('/api/sales').then(r => r.json()),
+        fetch('/api/prescriptions').then(r => r.json())
+      ]);
+
+      setMedicines(medsRes);
+      setSuppliers(suppsRes);
+      setCustomers(custsRes);
+      setSales(salesRes);
+      setPrescriptions(prescRes);
+    } catch (err) {
+      console.error('Error fetching data:', err);
+      alert('Failed to load system data from the server.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleEditMedicine = (updatedMed: Medicine) => {
-    setMedicines(medicines.map(m => m.id === updatedMed.id ? updatedMed : m));
-  };
-
-  const handleDeleteMedicine = (id: string) => {
-    setMedicines(medicines.filter(m => m.id !== id));
-  };
-
-  const handleAddSale = (newSale: any) => {
-    const sale: Sale = {
-      ...newSale,
-      userId: currentUser?.id || '1',
-      userName: currentUser?.name || 'System'
-    };
-    setSales(prev => [...prev, sale]);
-
-    newSale.items.forEach((item: any) => {
-      setMedicines(prevMeds => prevMeds.map(m => {
-        if (m.id === item.medicineId) {
-          const nextStock = Math.max(0, m.stockQty - item.qty);
-          return { ...m, stockQty: nextStock };
-        }
-        return m;
-      }));
-
-      setInventoryLogs(prevLogs => {
-        const nextId = (prevLogs.length + 1).toString();
-        const newLog: InventoryLog = {
-          id: nextId,
-          medicineId: item.medicineId,
-          medicineName: item.name,
-          type: 'Stock Out',
-          qty: -item.qty,
-          reason: `Sale: ${item.name}`,
-          userName: currentUser?.name || 'System',
-          createdAt: new Date().toISOString()
-        };
-        return [...prevLogs, newLog];
+  // CRUD & Actions connecting to backend
+  const handleAddMedicine = async (newMed: Omit<Medicine, 'id'>) => {
+    try {
+      const res = await fetch('/api/medicines', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newMed)
       });
-    });
-
-    if (newSale.customerId) {
-      setCustomers(prevCusts => prevCusts.map(c => {
-        if (c.id === newSale.customerId) {
-          return { ...c, loyaltyPoints: c.loyaltyPoints + Math.floor(newSale.total) };
-        }
-        return c;
-      }));
+      if (!res.ok) throw new Error('Failed to add medicine');
+      const addedMed = await res.json();
+      setMedicines([addedMed, ...medicines]);
+    } catch (err) {
+      console.error(err);
+      alert('Error adding medicine');
     }
   };
 
-  const handleAdjustStock = (medId: string, qty: number, type: 'Stock In' | 'Stock Out' | 'Adjustment', reason: string) => {
-    setMedicines(prevMeds => prevMeds.map(m => {
-      if (m.id === medId) {
-        const nextStock = Math.max(0, m.stockQty + qty);
-        return { ...m, stockQty: nextStock };
-      }
-      return m;
-    }));
-
-    const medName = medicines.find(m => m.id === medId)?.name || 'Unknown Item';
-    const newLog: InventoryLog = {
-      id: (inventoryLogs.length + 1).toString(),
-      medicineId: medId,
-      medicineName: medName,
-      type,
-      qty,
-      reason,
-      userName: currentUser?.name || 'System',
-      createdAt: new Date().toISOString()
-    };
-    setInventoryLogs(prev => [...prev, newLog]);
-  };
-
-  const handleAddSupplier = (newSup: Omit<Supplier, 'id'>) => {
-    setSuppliers(prev => [...prev, { ...newSup, id: (prev.length + 1).toString() }]);
-  };
-
-  const handleAddPurchaseOrder = (newPO: Omit<PurchaseOrder, 'id'>) => {
-    const po: PurchaseOrder = {
-      ...newPO,
-      id: `PO-${(purchases.length + 5001).toString()}`
-    };
-    setPurchases(prev => [...prev, po]);
-    setSuppliers(prevSups => prevSups.map(s => {
-      if (s.id === po.supplierId) {
-        return { ...s, balance: s.balance + po.total };
-      }
-      return s;
-    }));
-  };
-
-  const handlePaySupplier = (supplierId: string, amount: number) => {
-    setSuppliers(prevSups => prevSups.map(s => {
-      if (s.id === supplierId) {
-        return { ...s, balance: Math.max(0, s.balance - amount) };
-      }
-      return s;
-    }));
-  };
-
-  const handleAddCustomer = (newCust: Omit<Customer, 'id'>) => {
-    setCustomers(prev => [...prev, { ...newCust, id: (prev.length + 1).toString() }]);
-  };
-
-  const handleAddPrescription = (newPres: Omit<Prescription, 'id'>) => {
-    setPrescriptions(prev => [...prev, { ...newPres, id: `PR-${(prev.length + 8001).toString()}` }]);
-  };
-
-  const handleAddUser = (newUser: Omit<User, 'id'>) => {
-    setUsers(prev => [...prev, { ...newUser, id: (prev.length + 1).toString() }]);
-  };
-
-  const handleUpdateUserStatus = (id: string, status: 'Active' | 'Inactive') => {
-    setUsers(prev => prev.map(u => u.id === id ? { ...u, status } : u));
-  };
-
-  // Render correct view tab content
-  const renderTabContent = () => {
-    switch (currentTab) {
-      case 'dashboard':
-        return (
-          <DashboardView
-            medicines={medicines}
-            sales={sales}
-            purchases={purchases}
-            suppliers={suppliers}
-            customers={customers}
-            setCurrentTab={setCurrentTab}
-          />
-        );
-      case 'medicines':
-        return (
-          <MedicineView
-            medicines={medicines}
-            suppliers={suppliers}
-            onAddMedicine={handleAddMedicine}
-            onEditMedicine={handleEditMedicine}
-            onDeleteMedicine={handleDeleteMedicine}
-          />
-        );
-      case 'sales-pos':
-        return (
-          <SalesPOSView
-            medicines={medicines}
-            customers={customers}
-            prescriptions={prescriptions}
-            onAddSale={handleAddSale}
-            onViewReport={() => setCurrentTab('reports')}
-          />
-        );
-      case 'inventory':
-        return (
-          <InventoryView
-            medicines={medicines}
-            inventoryLogs={inventoryLogs}
-            onAdjustStock={handleAdjustStock}
-          />
-        );
-      case 'suppliers':
-        return (
-          <SuppliersView
-            suppliers={suppliers}
-            purchaseOrders={purchases}
-            medicines={medicines}
-            onAddSupplier={handleAddSupplier}
-            onAddPurchaseOrder={handleAddPurchaseOrder}
-            onPaySupplier={handlePaySupplier}
-          />
-        );
-      case 'customers':
-        return (
-          <CustomersView
-            customers={customers}
-            sales={sales}
-            onAddCustomer={handleAddCustomer}
-          />
-        );
-      case 'prescriptions':
-        return (
-          <PrescriptionsView
-            prescriptions={prescriptions}
-            customers={customers}
-            medicines={medicines}
-            onAddPrescription={handleAddPrescription}
-          />
-        );
-      case 'reports':
-        return (
-          <ReportsView
-            sales={sales}
-          />
-        );
-      case 'users':
-        return (
-          <UserManagementView
-            users={users}
-            onAddUser={handleAddUser}
-            onUpdateUserStatus={handleUpdateUserStatus}
-          />
-        );
-      case 'settings':
-        return (
-          <SettingsView
-            settings={settings}
-            onSaveSettings={setSettings}
-          />
-        );
-      default:
-        return <div>View not implemented.</div>;
+  const handleEditMedicine = async (updatedMed: Medicine) => {
+    try {
+      const res = await fetch(`/api/medicines/${updatedMed.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedMed)
+      });
+      if (!res.ok) throw new Error('Failed to update medicine');
+      const newMed = await res.json();
+      setMedicines(medicines.map(m => m.id === newMed.id ? newMed : m));
+    } catch (err) {
+      console.error(err);
+      alert('Error updating medicine');
     }
   };
 
-  // Login Screen Render
+  const handleDeleteMedicine = async (id: string) => {
+    try {
+      const res = await fetch(`/api/medicines/${id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Failed to delete medicine');
+      setMedicines(medicines.filter(m => m.id !== id));
+    } catch (err) {
+      console.error(err);
+      alert('Error deleting medicine');
+    }
+  };
+
+  const handleAddSale = async (newSale: any) => {
+    try {
+      const payload = {
+        ...newSale,
+        userId: currentUser?.id
+      };
+      
+      const res = await fetch('/api/sales', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      
+      if (!res.ok) throw new Error('Checkout failed');
+      
+      // Refresh medicines to get updated stock and refresh sales
+      fetchData();
+    } catch (err) {
+      console.error(err);
+      alert('Error processing sale checkout');
+    }
+  };
+
+  const handleAddPurchase = (newPo: PurchaseOrder) => {
+    setPurchases([...purchases, newPo]);
+    // NOTE: Purchases backend not fully implemented yet, only updating local state temporarily
+  };
+
+  // Render Login Screen if not authenticated
   if (!currentUser) {
     return (
-      <div style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
-        padding: '1rem',
-        position: 'relative'
-      }}>
-        {/* Language Switcher in top-right corner */}
-        <div style={{ position: 'absolute', top: '1rem', right: '1rem' }}>
+      <div className="login-container">
+        <div style={{ position: 'absolute', top: 20, right: 20 }}>
           <LanguageSwitcher />
         </div>
-
-        <div className="card" style={{ width: '100%', maxWidth: '420px', padding: '2.5rem', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-lg)' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '2rem' }}>
-            <div style={{
-              width: '60px',
-              height: '60px',
-              backgroundColor: 'var(--accent-color)',
-              color: 'white',
-              borderRadius: '16px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: '1rem'
-            }}>
-              <Pill size={32} />
+        <div className="login-card">
+          <div className="login-header">
+            <div className="login-icon">
+              <Pill size={32} color="white" />
             </div>
-            <h2 style={{ color: '#0f172a', fontWeight: 800 }}>{t('app.title')} {t('auth.signIn')}</h2>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', textAlign: 'center', marginTop: '0.25rem' }}>
-              {t('app.tagline')}
-            </p>
+            <h1>{t('auth.title')}</h1>
+            <p>{t('auth.subtitle')}</p>
           </div>
-
-          <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+          
+          <form onSubmit={handleLogin} className="login-form">
             {loginError && (
-              <div style={{ color: '#ef4444', backgroundColor: '#fee2e2', padding: '0.75rem', borderRadius: 'var(--radius-sm)', fontSize: '0.8rem', fontWeight: 600 }}>
+              <div style={{ padding: '0.75rem', backgroundColor: '#fee2e2', color: '#b91c1c', borderRadius: '4px', fontSize: '0.9rem', textAlign: 'center' }}>
                 {loginError}
               </div>
             )}
+            
             <div className="form-group">
-              <label>{t('auth.email')}</label>
-              <div style={{ position: 'relative' }}>
-                <Mail size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)' }} />
-                <input
-                  required
-                  type="email"
-                  className="form-control"
-                  placeholder={t('auth.emailPlaceholder')}
-                  style={{ paddingLeft: '2.5rem' }}
-                  value={loginEmail}
-                  onChange={e => setLoginEmail(e.target.value)}
-                />
-              </div>
+              <label><Mail size={16} /> {t('auth.email')}</label>
+              <input
+                type="email"
+                required
+                className="form-control"
+                placeholder="Enter email (e.g. jane@pharmacy.com)"
+                value={loginEmail}
+                onChange={e => setLoginEmail(e.target.value)}
+              />
             </div>
-
+            
             <div className="form-group">
-              <label>{t('auth.password')}</label>
-              <div style={{ position: 'relative' }}>
-                <Lock size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)' }} />
-                <input
-                  required
-                  type="password"
-                  className="form-control"
-                  placeholder={t('auth.passwordPlaceholder')}
-                  style={{ paddingLeft: '2.5rem' }}
-                  value={loginPassword}
-                  onChange={e => setLoginPassword(e.target.value)}
-                />
-              </div>
+              <label><Lock size={16} /> {t('auth.password')}</label>
+              <input
+                type="password"
+                required
+                className="form-control"
+                placeholder="Enter password (e.g. admin123)"
+                value={loginPassword}
+                onChange={e => setLoginPassword(e.target.value)}
+              />
             </div>
-
-            <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '0.75rem', fontSize: '0.95rem', fontWeight: 'bold', marginTop: '0.5rem' }}>
-              {t('auth.signIn')}
+            
+            <button type="submit" className="btn btn-primary btn-block" disabled={authLoading}>
+              {authLoading ? 'Signing in...' : t('auth.loginBtn')}
             </button>
-          </form>
-
-          <div style={{ marginTop: '2rem', borderTop: '1px solid var(--border-color)', paddingTop: '1rem' }}>
-            <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', textAlign: 'center', marginBottom: '0.5rem' }}>
-              {t('auth.demoAccounts')}
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
-              <div>• <strong>{t('auth.admin')}:</strong> jane@pharmacy.com ({t('auth.passwordHint')})</div>
-              <div>• <strong>{t('auth.pharmacist')}:</strong> mark@pharmacy.com ({t('auth.passwordHint')})</div>
-              <div>• <strong>{t('auth.cashier')}:</strong> lucy@pharmacy.com ({t('auth.passwordHint')})</div>
+            
+            <div style={{ marginTop: '1.5rem', textAlign: 'center', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+              <p>For demo purposes, use:</p>
+              <p><strong>jane@pharmacy.com</strong></p>
+              <p>Password: <strong>admin123</strong></p>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     );
   }
 
-  // Active App Session Screen Render
   return (
     <div className="app-container">
-      <Sidebar
-        currentTab={currentTab}
-        setCurrentTab={setCurrentTab}
-        currentUser={currentUser}
+      <Sidebar 
+        currentTab={currentTab} 
+        onTabChange={setCurrentTab} 
+        userRole={currentUser.role}
         onLogout={handleLogout}
       />
-      <main className="main-content">
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '0.5rem' }}>
-          <LanguageSwitcher />
-        </div>
-        {renderTabContent()}
-      </main>
+      <div className="main-content">
+        {isLoading ? (
+          <div style={{ display: 'flex', height: '100%', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ fontSize: '1.25rem', color: 'var(--text-secondary)' }}>Loading system data...</div>
+          </div>
+        ) : (
+          <>
+            {currentTab === 'dashboard' && <DashboardView medicines={medicines} sales={sales} />}
+            {currentTab === 'sales-pos' && (
+              <SalesPOSView 
+                medicines={medicines} 
+                customers={customers} 
+                prescriptions={prescriptions}
+                onAddSale={handleAddSale}
+                onViewReport={() => setCurrentTab('reports')}
+              />
+            )}
+            {currentTab === 'medicines' && (
+              <MedicineView 
+                medicines={medicines} 
+                suppliers={suppliers}
+                onAddMedicine={handleAddMedicine}
+                onEditMedicine={handleEditMedicine}
+                onDeleteMedicine={handleDeleteMedicine}
+              />
+            )}
+            {currentTab === 'inventory' && (
+              <InventoryView 
+                medicines={medicines} 
+                logs={inventoryLogs}
+                purchases={purchases}
+                onAddPurchase={handleAddPurchase}
+              />
+            )}
+            {currentTab === 'suppliers' && <SuppliersView suppliers={suppliers} />}
+            {currentTab === 'customers' && <CustomersView customers={customers} />}
+            {currentTab === 'prescriptions' && <PrescriptionsView prescriptions={prescriptions} />}
+            {currentTab === 'reports' && <ReportsView sales={sales} />}
+            {currentTab === 'users' && <UserManagementView users={users} />}
+            {currentTab === 'settings' && <SettingsView settings={settings} onUpdateSettings={setSettings} />}
+          </>
+        )}
+      </div>
     </div>
   );
 }

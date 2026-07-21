@@ -62,7 +62,6 @@ export interface Sale {
   items: SaleItem[];
   subtotal: number;
   discount: number;
-  tax: number;
   total: number;
   paymentMethod: 'Cash' | 'Bank Transfer';
   createdAt: string;
@@ -111,7 +110,6 @@ export interface SystemSettings {
   address: string;
   phone: string;
   email: string;
-  taxRate: number;
   currency: string;
   receiptFooter: string;
 }
@@ -121,7 +119,6 @@ export const defaultSettings: SystemSettings = {
   address: 'Bole Road, Bole Sub-City, Addis Ababa, Ethiopia',
   phone: '+251 11 123 4567',
   email: 'info@addispharmacy.et',
-  taxRate: 15,
   currency: 'ETB',
   receiptFooter: 'Thank you for choosing Addis Pharmacy. Stay healthy!',
 };

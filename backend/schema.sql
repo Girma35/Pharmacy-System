@@ -82,7 +82,6 @@ CREATE TABLE IF NOT EXISTS sales (
     user_id INT REFERENCES users(id) ON DELETE SET NULL,
     subtotal DECIMAL(12,2) NOT NULL,
     discount DECIMAL(12,2) DEFAULT 0.00,
-    tax DECIMAL(12,2) NOT NULL,
     total DECIMAL(12,2) NOT NULL,
     payment_method VARCHAR(30) DEFAULT 'Cash',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
