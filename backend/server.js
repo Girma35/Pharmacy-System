@@ -549,7 +549,7 @@ app.get('/api/sales', async (req, res) => {
        customerName: s.customers?.name || 'Walk-in',
        userId: s.user_id ? String(s.user_id) : 'System',
        userName: s.users?.name || 'System',
-       items: (s.sale_items || []).map((si: any) => ({
+       items: (s.sale_items || []).map((si) => ({
          medicineId: String(si.id),
          name: si.medicines
            ? `${si.medicines.name}${si.medicines.form_and_strength ? ' ' + si.medicines.form_and_strength : ''}`
