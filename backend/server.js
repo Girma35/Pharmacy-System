@@ -149,29 +149,42 @@ app.post('/api/auth/login', async (req, res) => {
   if (!email) return res.status(400).json({ error: 'Email required' });
 
   try {
+    // First get user without role join to avoid inner join failures
     const { data: userData, error } = await supabase
       .from('users')
-      .select('id, name, email, status, role_id, roles!inner(name)')
+      .select('id, name, email, status, role_id')
       .eq('email', email.toLowerCase())
       .eq('status', 'Active')
       .single();
 
     if (error || !userData) {
-      return res.status(401).json({ error: 'Staff account invalid or deactivated' });
+      return res.status(401).json({ error: 'Staff account not found or inactive' });
+    }
+
+    // Separately fetch the role name
+    let roleName = 'Pharmacist'; // safe default
+    if (userData.role_id) {
+      const { data: roleData } = await supabase
+        .from('roles')
+        .select('name')
+        .eq('id', userData.role_id)
+        .single();
+      if (roleData?.name) roleName = roleData.name;
     }
 
     const user = {
       id: String(userData.id),
       name: userData.name,
       email: userData.email,
-      role: userData.roles.name,
+      role: roleName,
       status: userData.status
     };
 
     const token = jwt.sign({ id: user.id, email: user.email, role: user.role }, JWT_SECRET, { expiresIn: '8h' });
     res.json({ token, user });
   } catch (error) {
-    res.status(500).json({ error: 'Login authentication database query error' });
+    console.error('Login error:', error);
+    res.status(500).json({ error: 'Login server error' });
   }
 });
 
