@@ -222,6 +222,11 @@ export default function App() {
     // NOTE: Purchases backend not fully implemented yet, only updating local state temporarily
   };
 
+  // Render Language Selection if not chosen yet
+  if (!languageSelected) {
+    return <LanguageSelectionScreen onSelect={() => setLanguageSelected(true)} />;
+  }
+
   // Render Login Screen if not authenticated
   if (!currentUser) {
     return (
