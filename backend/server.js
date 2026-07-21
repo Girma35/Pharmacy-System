@@ -20,22 +20,29 @@ app.use(express.json());
 // ----------------------------------------------------
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseServiceKey = process.env.SUPABASE_SECRET_KEY;
-let supabase;
+let supabase = null;
 
-if (supabaseUrl && supabaseServiceKey) {
-  try {
+try {
+  if (supabaseUrl && supabaseServiceKey) {
     supabase = createClient(supabaseUrl, supabaseServiceKey, {
       auth: { persistSession: false }
     });
-    console.log('✅ Supabase client created successfully!');
-  } catch (err) {
-    console.error('❌ Supabase initialization failed.');
-    process.exit(1);
+    console.log('✅ Supabase client initialized');
+  } else {
+    console.warn('⚠️  SUPABASE_URL or SUPABASE_SECRET_KEY not set — DB features disabled');
   }
-} else {
-  console.error('❌ Missing SUPABASE_URL or SUPABASE_SECRET_KEY in .env file.');
-  process.exit(1);
+} catch (err) {
+  console.error('❌ Supabase init error:', err.message);
 }
+
+// Helper: check if DB is available
+const requireDB = (res) => {
+  if (!supabase) {
+    res.status(503).json({ error: 'Database not configured. Set SUPABASE_URL and SUPABASE_SECRET_KEY in Vercel environment variables.' });
+    return false;
+  }
+  return true;
+};
 
 // ----------------------------------------------------
 // Helper: flatten Supabase joined row to frontend format
@@ -148,16 +155,27 @@ app.post('/api/auth/login', async (req, res) => {
   const { email, role: selectedRole } = req.body;
   if (!email) return res.status(400).json({ error: 'Email is required' });
 
+  // If Supabase is not configured, use fallback login
+  if (!supabase) {
+    const fallbackUser = {
+      id: 'demo-1',
+      name: email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
+      email: email.toLowerCase(),
+      role: selectedRole || 'Admin',
+      status: 'Active'
+    };
+    const token = jwt.sign({ id: fallbackUser.id, email: fallbackUser.email, role: fallbackUser.role }, JWT_SECRET, { expiresIn: '8h' });
+    return res.json({ token, user: fallbackUser });
+  }
+
   try {
-    // Try to find user in DB
-    const { data: userData, error: userError } = await supabase
+    const { data: userData } = await supabase
       .from('users')
       .select('id, name, email, status, role_id')
       .eq('email', email.toLowerCase())
-      .maybeSingle(); // maybeSingle never throws when row is missing
+      .maybeSingle();
 
     if (userData && userData.status === 'Active') {
-      // User found — resolve role name
       let roleName = selectedRole || 'Pharmacist';
       if (userData.role_id) {
         const { data: roleData } = await supabase
@@ -167,7 +185,6 @@ app.post('/api/auth/login', async (req, res) => {
           .maybeSingle();
         if (roleData?.name) roleName = roleData.name;
       }
-
       const user = {
         id: String(userData.id),
         name: userData.name,
@@ -179,8 +196,7 @@ app.post('/api/auth/login', async (req, res) => {
       return res.json({ token, user });
     }
 
-    // No user found — allow with the selected role (demo/open mode)
-    // This lets the system work even before users are seeded in Supabase
+    // No user in DB — fallback with selected role
     const fallbackUser = {
       id: 'demo-1',
       name: email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
@@ -193,20 +209,16 @@ app.post('/api/auth/login', async (req, res) => {
 
   } catch (err) {
     console.error('Login error:', err);
-    // Last resort fallback — never let login fully fail
-    try {
-      const fallbackUser = {
-        id: 'fallback-1',
-        name: 'Admin User',
-        email: email.toLowerCase(),
-        role: selectedRole || 'Admin',
-        status: 'Active'
-      };
-      const token = jwt.sign({ id: fallbackUser.id, email: fallbackUser.email, role: fallbackUser.role }, JWT_SECRET, { expiresIn: '8h' });
-      return res.json({ token, user: fallbackUser });
-    } catch (jwtErr) {
-      return res.status(500).json({ error: 'Login server error. Please contact administrator.' });
-    }
+    // Always return JSON, never crash
+    const fallbackUser = {
+      id: 'fallback-1',
+      name: 'Admin User',
+      email: email.toLowerCase(),
+      role: selectedRole || 'Admin',
+      status: 'Active'
+    };
+    const token = jwt.sign({ id: fallbackUser.id, email: fallbackUser.email, role: fallbackUser.role }, JWT_SECRET, { expiresIn: '8h' });
+    return res.json({ token, user: fallbackUser });
   }
 });
 
