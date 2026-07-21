@@ -479,20 +479,39 @@ app.get('/api/sales', async (req, res) => {
   try {
     const { data: sales, error: salesError } = await supabase
       .from('sales')
-      .select('*, customers(name), users(name)')
+      .select(`
+        *,
+        customers(name),
+        users(name),
+        sale_items(
+          id,
+          qty,
+          unit_price,
+          discount,
+          medicines(name, form_and_strength, unit_of_measure)
+        )
+      `)
       .order('created_at', { ascending: false })
       .limit(50);
       
     if (salesError) throw salesError;
     
-    // Quick format for frontend
     const formatted = sales.map(s => ({
        id: String(s.id),
        customerId: s.customer_id ? String(s.customer_id) : undefined,
        customerName: s.customers?.name || 'Walk-in',
        userId: s.user_id ? String(s.user_id) : 'System',
        userName: s.users?.name || 'System',
-       items: [], // simplified for dashboard
+       items: (s.sale_items || []).map((si: any) => ({
+         medicineId: String(si.id),
+         name: si.medicines
+           ? `${si.medicines.name}${si.medicines.form_and_strength ? ' ' + si.medicines.form_and_strength : ''}`
+           : 'Unknown Medicine',
+         qty: si.qty,
+         price: Number(si.unit_price),
+         discount: Number(si.discount || 0),
+         unitOfMeasure: si.medicines?.unit_of_measure || ''
+       })),
        subtotal: Number(s.subtotal),
        discount: Number(s.discount),
        total: Number(s.total),
