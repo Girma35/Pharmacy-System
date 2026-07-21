@@ -83,7 +83,7 @@ export default function ReportsView({ sales }: ReportsViewProps) {
           </div>
           <div>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Total Revenue</p>
-            <h2 style={{ fontSize: '1.8rem', color: 'var(--success)' }}>${totalRevenue.toFixed(2)}</h2>
+            <h2 style={{ fontSize: '1.8rem', color: 'var(--success)' }}>{totalRevenue.toLocaleString()} ETB</h2>
           </div>
         </div>
 
@@ -102,9 +102,9 @@ export default function ReportsView({ sales }: ReportsViewProps) {
             <TrendingUp size={28} />
           </div>
           <div>
-            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Avg per Sale</p>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Total Sales</p>
             <h2 style={{ fontSize: '1.8rem' }}>
-              ${totalTransactions > 0 ? (totalRevenue / totalTransactions).toFixed(2) : '0.00'}
+              {totalRevenue.toLocaleString()} ETB
             </h2>
           </div>
         </div>
