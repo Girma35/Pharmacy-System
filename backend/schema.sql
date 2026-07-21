@@ -39,7 +39,9 @@ CREATE TABLE IF NOT EXISTS suppliers (
 CREATE TABLE IF NOT EXISTS medicines (
     id SERIAL PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
+    form_and_strength VARCHAR(150),
     category_id INT REFERENCES categories(id) ON DELETE SET NULL,
+    unit_of_measure VARCHAR(50),
     barcode VARCHAR(50) UNIQUE,
     batch_no VARCHAR(50) NOT NULL,
     expiry_date DATE NOT NULL,
@@ -48,6 +50,8 @@ CREATE TABLE IF NOT EXISTS medicines (
     stock_qty INT DEFAULT 0,
     low_stock_threshold INT DEFAULT 10,
     supplier_id INT REFERENCES suppliers(id) ON DELETE SET NULL,
+    requires_prescription BOOLEAN DEFAULT FALSE,
+    storage_condition VARCHAR(50) DEFAULT 'room_temperature',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

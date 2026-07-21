@@ -3,6 +3,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import { createClient } from '@supabase/supabase-js';
+import fs from 'fs';
+import path from 'path';
 
 dotenv.config();
 
@@ -19,7 +21,6 @@ app.use(express.json());
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseServiceKey = process.env.SUPABASE_SECRET_KEY;
 let supabase;
-let useMockDb = false;
 
 if (supabaseUrl && supabaseServiceKey) {
   try {
@@ -27,56 +28,25 @@ if (supabaseUrl && supabaseServiceKey) {
       auth: { persistSession: false }
     });
     console.log('✅ Supabase client created successfully!');
-    // Attempt to verify tables exist — if not, stay on mock DB
-    const { error: checkError } = await supabase.from('medicines').select('id', { count: 'exact', head: true });
-    if (checkError && checkError.message?.includes('relation')) {
-      console.log('   ⚠️ Tables not found — migration required. Using mock DB until tables are created.');
-      useMockDb = true;
-    } else if (checkError) {
-      console.log('   ⚠️ Supabase reachable but got:', checkError.message);
-      console.log('   ✅ Using Supabase mode (this may change if queries fail).');
-    } else {
-      console.log('   ✅ Database tables found! Running in Supabase mode.');
-    }
   } catch (err) {
-    console.warn('⚠️ Supabase initialization failed. Falling back to in-memory Mock DB.');
-    useMockDb = true;
+    console.error('❌ Supabase initialization failed.');
+    process.exit(1);
   }
 } else {
-  console.warn('⚠️ Missing SUPABASE_URL or SUPABASE_SECRET_KEY. Falling back to in-memory Mock DB.');
-  useMockDb = true;
+  console.error('❌ Missing SUPABASE_URL or SUPABASE_SECRET_KEY in .env file.');
+  process.exit(1);
 }
-
-// In-Memory Database Fallback State (if Supabase is not configured)
-const mockDb = {
-  users: [
-    { id: 1, name: 'Dr. Jane Foster', email: 'jane@pharmacy.com', role: 'Admin', status: 'Active' },
-    { id: 2, name: 'Mark Miller', email: 'mark@pharmacy.com', role: 'Pharmacist', status: 'Active' },
-    { id: 3, name: 'Lucy Heart', email: 'lucy@pharmacy.com', role: 'Cashier', status: 'Active' }
-  ],
-  medicines: [
-    { id: 1, name: 'Paracetamol 500mg', category: 'Analgesics', barcode: '8901234567890', batchNo: 'B-PR204', expiryDate: '2027-12-15', purchasePrice: 0.5, sellingPrice: 1.5, stockQty: 250, lowStockThreshold: 50, supplierId: 1 },
-    { id: 2, name: 'Amoxicillin 250mg', category: 'Antibiotics', barcode: '8901234567891', batchNo: 'B-AM509', expiryDate: '2026-09-30', purchasePrice: 2.2, sellingPrice: 4.5, stockQty: 15, lowStockThreshold: 30, supplierId: 2 }
-  ],
-  suppliers: [
-    { id: 1, name: 'PharmaDistributors Ltd', contact: 'John Smith', email: 'john@pharmadist.com', address: '123 Supply Ave, Medical City', balance: 450.00 }
-  ],
-  customers: [
-    { id: 1, name: 'Alice Cooper', phone: '0712345678', email: 'alice@gmail.com', loyaltyPoints: 120 }
-  ],
-  sales: [],
-  prescriptions: [],
-  inventoryLogs: []
-};
 
 // ----------------------------------------------------
 // Helper: flatten Supabase joined row to frontend format
 // ----------------------------------------------------
 function flattenMedicine(row) {
   return {
-    id: row.id,
+    id: String(row.id),
     name: row.name,
+    formAndStrength: row.form_and_strength || '',
     category: row.categories?.name || '',
+    unitOfMeasure: row.unit_of_measure || '',
     barcode: row.barcode,
     batchNo: row.batch_no,
     expiryDate: row.expiry_date,
@@ -85,14 +55,16 @@ function flattenMedicine(row) {
     stockQty: row.stock_qty,
     lowStockThreshold: row.low_stock_threshold,
     supplierId: row.supplier_id ? String(row.supplier_id) : '',
-    supplierName: row.suppliers?.name || ''
+    supplierName: row.suppliers?.name || '',
+    requiresPrescription: row.requires_prescription || false,
+    storageCondition: row.storage_condition || 'room_temperature'
   };
 }
 
 function flattenPrescription(row) {
   return {
-    id: row.id,
-    customerId: row.customer_id,
+    id: String(row.id),
+    customerId: String(row.customer_id),
     customerName: row.customers?.name || '',
     doctorName: row.doctor_name,
     notes: row.notes,
@@ -105,17 +77,76 @@ function flattenPrescription(row) {
 // Endpoints & Controller Logic
 // ----------------------------------------------------
 
+// SEED Endpoint
+app.post('/api/seed', async (req, res) => {
+  try {
+    const dataPath = path.join(process.cwd(), '..', 'ethiopia_pharmacy_medicines_300.json');
+    const rawData = fs.readFileSync(dataPath, 'utf-8');
+    const catalogData = JSON.parse(rawData);
+    
+    // Seed generic categories first if they don't exist
+    const categoriesSet = new Set(catalogData.map(m => m.category));
+    const categoriesArray = Array.from(categoriesSet);
+    
+    for (const catName of categoriesArray) {
+      await supabase.from('categories').insert({ name: catName }).select('id').maybeSingle();
+    }
+    
+    // Default supplier if no suppliers exist
+    let { data: suppliers } = await supabase.from('suppliers').select('id');
+    if (!suppliers || suppliers.length === 0) {
+      await supabase.from('suppliers').insert([
+        { name: 'EPHARM – Ethiopian Pharmaceuticals', contact: 'Mulugeta', email: 'supply@epharm.gov.et' },
+        { name: 'Addis Pharma Distributors', contact: 'Tigist', email: 'orders@addispharma.com' }
+      ]);
+      suppliers = (await supabase.from('suppliers').select('id')).data;
+    }
+
+    // Prepare medicines payload
+    const payload = [];
+    for (const [index, m] of catalogData.entries()) {
+      // Find category ID
+      const { data: catData } = await supabase.from('categories').select('id').eq('name', m.category).single();
+      const catId = catData ? catData.id : null;
+      
+      const supplierId = suppliers[index % suppliers.length].id;
+      
+      payload.push({
+        name: m.generic_name,
+        form_and_strength: m.form_and_strength,
+        category_id: catId,
+        unit_of_measure: m.unit_of_measure,
+        barcode: `8910234${String(index+1).padStart(6, '0')}`,
+        batch_no: `BT-${m.id.replace('MED-', '')}`,
+        expiry_date: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // 1 year from now
+        purchase_price: Math.round(m.retail_price_etb * 0.7),
+        selling_price: m.retail_price_etb,
+        stock_qty: m.storage_condition === 'locked_cabinet' ? 10 : 50,
+        low_stock_threshold: 10,
+        supplier_id: supplierId,
+        requires_prescription: m.requires_prescription,
+        storage_condition: m.storage_condition
+      });
+    }
+    
+    const { error } = await supabase.from('medicines').insert(payload);
+    if (error) {
+       console.error("Insert error:", error);
+       throw error;
+    }
+    
+    res.json({ message: `Successfully seeded ${payload.length} medicines.` });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to seed database.' });
+  }
+});
+
+
 // Staff Login Auth
 app.post('/api/auth/login', async (req, res) => {
   const { email } = req.body;
   if (!email) return res.status(400).json({ error: 'Email required' });
-
-  if (useMockDb) {
-    const user = mockDb.users.find(u => u.email.toLowerCase() === email.toLowerCase());
-    if (!user) return res.status(401).json({ error: 'Staff account credentials invalid' });
-    const token = jwt.sign({ id: user.id, email: user.email, role: user.role }, JWT_SECRET, { expiresIn: '8h' });
-    return res.json({ token, user });
-  }
 
   try {
     const { data: userData, error } = await supabase
@@ -130,7 +161,7 @@ app.post('/api/auth/login', async (req, res) => {
     }
 
     const user = {
-      id: userData.id,
+      id: String(userData.id),
       name: userData.name,
       email: userData.email,
       role: userData.roles.name,
@@ -146,7 +177,6 @@ app.post('/api/auth/login', async (req, res) => {
 
 // GET catalog medicines
 app.get('/api/medicines', async (req, res) => {
-  if (useMockDb) return res.json(mockDb.medicines);
   try {
     const { data, error } = await supabase
       .from('medicines')
@@ -162,24 +192,9 @@ app.get('/api/medicines', async (req, res) => {
 
 // POST save/add new medicine
 app.post('/api/medicines', async (req, res) => {
-  const { name, category, barcode, batchNo, expiryDate, purchasePrice, sellingPrice, stockQty, lowStockThreshold, supplierId } = req.body;
-
-  if (useMockDb) {
-    const newMed = {
-      id: mockDb.medicines.length + 1,
-      name, category, barcode, batchNo, expiryDate,
-      purchasePrice: Number(purchasePrice),
-      sellingPrice: Number(sellingPrice),
-      stockQty: Number(stockQty),
-      lowStockThreshold: Number(lowStockThreshold),
-      supplierId: Number(supplierId)
-    };
-    mockDb.medicines.push(newMed);
-    return res.status(201).json(newMed);
-  }
+  const { name, formAndStrength, category, unitOfMeasure, barcode, batchNo, expiryDate, purchasePrice, sellingPrice, stockQty, lowStockThreshold, supplierId, requiresPrescription, storageCondition } = req.body;
 
   try {
-    // Resolve category - find or create
     let catId;
     const { data: existingCat } = await supabase
       .from('categories')
@@ -203,7 +218,9 @@ app.post('/api/medicines', async (req, res) => {
       .from('medicines')
       .insert({
         name,
+        form_and_strength: formAndStrength,
         category_id: catId,
+        unit_of_measure: unitOfMeasure,
         barcode,
         batch_no: batchNo,
         expiry_date: expiryDate,
@@ -211,7 +228,9 @@ app.post('/api/medicines', async (req, res) => {
         selling_price: Number(sellingPrice),
         stock_qty: Number(stockQty),
         low_stock_threshold: Number(lowStockThreshold),
-        supplier_id: supplierId ? Number(supplierId) : null
+        supplier_id: supplierId ? Number(supplierId) : null,
+        requires_prescription: requiresPrescription,
+        storage_condition: storageCondition
       })
       .select('*, categories(name), suppliers(name)')
       .single();
@@ -223,9 +242,74 @@ app.post('/api/medicines', async (req, res) => {
   }
 });
 
+// PUT edit medicine
+app.put('/api/medicines/:id', async (req, res) => {
+  const { id } = req.params;
+  const { name, formAndStrength, category, unitOfMeasure, barcode, batchNo, expiryDate, purchasePrice, sellingPrice, stockQty, lowStockThreshold, supplierId, requiresPrescription, storageCondition } = req.body;
+
+  try {
+    let catId;
+    const { data: existingCat } = await supabase
+      .from('categories')
+      .select('id')
+      .eq('name', category)
+      .maybeSingle();
+
+    if (existingCat) {
+      catId = existingCat.id;
+    } else {
+      const { data: newCat, error: catError } = await supabase
+        .from('categories')
+        .insert({ name: category })
+        .select('id')
+        .single();
+      if (catError) throw catError;
+      catId = newCat.id;
+    }
+
+    const { data, error } = await supabase
+      .from('medicines')
+      .update({
+        name,
+        form_and_strength: formAndStrength,
+        category_id: catId,
+        unit_of_measure: unitOfMeasure,
+        barcode,
+        batch_no: batchNo,
+        expiry_date: expiryDate,
+        purchase_price: Number(purchasePrice),
+        selling_price: Number(sellingPrice),
+        stock_qty: Number(stockQty),
+        low_stock_threshold: Number(lowStockThreshold),
+        supplier_id: supplierId ? Number(supplierId) : null,
+        requires_prescription: requiresPrescription,
+        storage_condition: storageCondition
+      })
+      .eq('id', id)
+      .select('*, categories(name), suppliers(name)')
+      .single();
+
+    if (error) throw error;
+    res.json(flattenMedicine(data));
+  } catch (error) {
+    res.status(500).json({ error: 'Error updating product in database' });
+  }
+});
+
+// DELETE medicine
+app.delete('/api/medicines/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const { error } = await supabase.from('medicines').delete().eq('id', id);
+    if (error) throw error;
+    res.json({ message: 'Deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Error deleting product' });
+  }
+});
+
 // GET suppliers list
 app.get('/api/suppliers', async (req, res) => {
-  if (useMockDb) return res.json(mockDb.suppliers);
   try {
     const { data, error } = await supabase
       .from('suppliers')
@@ -233,7 +317,7 @@ app.get('/api/suppliers', async (req, res) => {
       .order('id', { ascending: false });
 
     if (error) throw error;
-    res.json(data);
+    res.json(data.map(s => ({ ...s, id: String(s.id) })));
   } catch (error) {
     res.status(500).json({ error: 'Error loading suppliers' });
   }
@@ -242,11 +326,6 @@ app.get('/api/suppliers', async (req, res) => {
 // POST add new supplier
 app.post('/api/suppliers', async (req, res) => {
   const { name, contact, email, address } = req.body;
-  if (useMockDb) {
-    const newSup = { id: mockDb.suppliers.length + 1, name, contact, email, address, balance: 0.00 };
-    mockDb.suppliers.push(newSup);
-    return res.status(201).json(newSup);
-  }
   try {
     const { data, error } = await supabase
       .from('suppliers')
@@ -255,7 +334,7 @@ app.post('/api/suppliers', async (req, res) => {
       .single();
 
     if (error) throw error;
-    res.status(201).json(data);
+    res.status(201).json({ ...data, id: String(data.id) });
   } catch (error) {
     res.status(500).json({ error: 'Error saving supplier profile' });
   }
@@ -263,7 +342,6 @@ app.post('/api/suppliers', async (req, res) => {
 
 // GET customer CRM registry
 app.get('/api/customers', async (req, res) => {
-  if (useMockDb) return res.json(mockDb.customers);
   try {
     const { data, error } = await supabase
       .from('customers')
@@ -271,7 +349,7 @@ app.get('/api/customers', async (req, res) => {
       .order('id', { ascending: false });
 
     if (error) throw error;
-    res.json(data);
+    res.json(data.map(c => ({ ...c, id: String(c.id), loyaltyPoints: c.loyalty_points })));
   } catch (error) {
     res.status(500).json({ error: 'Error loading customer registry' });
   }
@@ -280,11 +358,6 @@ app.get('/api/customers', async (req, res) => {
 // POST save customer profile
 app.post('/api/customers', async (req, res) => {
   const { name, phone, email } = req.body;
-  if (useMockDb) {
-    const newCust = { id: mockDb.customers.length + 1, name, phone, email, loyaltyPoints: 0 };
-    mockDb.customers.push(newCust);
-    return res.status(201).json(newCust);
-  }
   try {
     const { data, error } = await supabase
       .from('customers')
@@ -293,7 +366,7 @@ app.post('/api/customers', async (req, res) => {
       .single();
 
     if (error) throw error;
-    res.status(201).json(data);
+    res.status(201).json({ ...data, id: String(data.id), loyaltyPoints: data.loyalty_points });
   } catch (error) {
     res.status(500).json({ error: 'Error saving customer details' });
   }
@@ -301,7 +374,6 @@ app.post('/api/customers', async (req, res) => {
 
 // GET medical prescriptions list
 app.get('/api/prescriptions', async (req, res) => {
-  if (useMockDb) return res.json(mockDb.prescriptions);
   try {
     const { data, error } = await supabase
       .from('prescriptions')
@@ -319,19 +391,13 @@ app.get('/api/prescriptions', async (req, res) => {
 app.post('/api/sales', async (req, res) => {
   const { customerId, userId, subtotal, discount, tax, total, paymentMethod, items } = req.body;
 
-  if (useMockDb) {
-    const newSale = { id: mockDb.sales.length + 1, customerId, userId, total, paymentMethod, items, createdAt: new Date().toISOString() };
-    mockDb.sales.push(newSale);
-    return res.status(201).json(newSale);
-  }
-
   try {
     // Insert the sale record
     const { data: saleData, error: saleError } = await supabase
       .from('sales')
       .insert({
-        customer_id: customerId || null,
-        user_id: userId || null,
+        customer_id: customerId ? Number(customerId) : null,
+        user_id: userId ? Number(userId) : null,
         subtotal,
         discount: discount || 0,
         tax,
@@ -350,7 +416,7 @@ app.post('/api/sales', async (req, res) => {
         .from('sale_items')
         .insert({
           sale_id: saleId,
-          medicine_id: item.medicineId,
+          medicine_id: Number(item.medicineId),
           qty: item.qty,
           unit_price: item.price,
           discount: item.discount || 0
@@ -362,7 +428,7 @@ app.post('/api/sales', async (req, res) => {
       const { data: medStock } = await supabase
         .from('medicines')
         .select('stock_qty')
-        .eq('id', item.medicineId)
+        .eq('id', Number(item.medicineId))
         .single();
 
       if (medStock) {
@@ -370,27 +436,27 @@ app.post('/api/sales', async (req, res) => {
         await supabase
           .from('medicines')
           .update({ stock_qty: newStock })
-          .eq('id', item.medicineId);
+          .eq('id', Number(item.medicineId));
       }
 
       // Record inventory log
       await supabase
         .from('inventory_logs')
         .insert({
-          medicine_id: item.medicineId,
+          medicine_id: Number(item.medicineId),
           type: 'Stock Out',
           qty: -item.qty,
           reason: `POS Sale ${saleId} transaction`,
-          user_id: userId || null
+          user_id: userId ? Number(userId) : null
         });
     }
 
-    // Award loyalty points (read current, then update)
+    // Award loyalty points
     if (customerId) {
       const { data: cust } = await supabase
         .from('customers')
         .select('loyalty_points')
-        .eq('id', customerId)
+        .eq('id', Number(customerId))
         .single();
 
       if (cust) {
@@ -398,42 +464,64 @@ app.post('/api/sales', async (req, res) => {
         await supabase
           .from('customers')
           .update({ loyalty_points: newPoints })
-          .eq('id', customerId);
+          .eq('id', Number(customerId));
       }
     }
 
-    res.status(201).json({ id: saleId, message: 'POS transaction checked out and logged successfully!' });
+    res.status(201).json({ id: String(saleId), message: 'POS transaction checked out and logged successfully!' });
   } catch (error) {
     res.status(500).json({ error: 'POS database transaction rollback exception' });
   }
 });
 
+// GET sales list
+app.get('/api/sales', async (req, res) => {
+  try {
+    const { data: sales, error: salesError } = await supabase
+      .from('sales')
+      .select('*, customers(name), users(name)')
+      .order('created_at', { ascending: false })
+      .limit(50);
+      
+    if (salesError) throw salesError;
+    
+    // Quick format for frontend
+    const formatted = sales.map(s => ({
+       id: String(s.id),
+       customerId: s.customer_id ? String(s.customer_id) : undefined,
+       customerName: s.customers?.name || 'Walk-in',
+       userId: s.user_id ? String(s.user_id) : 'System',
+       userName: s.users?.name || 'System',
+       items: [], // simplified for dashboard
+       subtotal: Number(s.subtotal),
+       discount: Number(s.discount),
+       tax: Number(s.tax),
+       total: Number(s.total),
+       paymentMethod: s.payment_method,
+       createdAt: s.created_at
+    }));
+    
+    res.json(formatted);
+  } catch (error) {
+    res.status(500).json({ error: 'Error fetching sales' });
+  }
+});
+
+
 // GET analytics dashboard report indices
 app.get('/api/reports/dashboard', async (req, res) => {
-  if (useMockDb) {
-    const todaySalesTotal = mockDb.sales.reduce((acc, curr) => acc + curr.total, 0);
-    const lowStockCount = mockDb.medicines.filter(m => m.stockQty <= m.lowStockThreshold).length;
-    return res.json({
-      todaySalesTotal,
-      lowStockCount,
-      totalCatalog: mockDb.medicines.length
-    });
-  }
   try {
-    // Get today's date boundaries
     const todayStart = new Date();
     todayStart.setHours(0, 0, 0, 0);
     const todayEnd = new Date();
     todayEnd.setHours(23, 59, 59, 999);
 
-    // Get today's sales total
     const { data: salesData } = await supabase
       .from('sales')
       .select('total')
       .gte('created_at', todayStart.toISOString())
       .lte('created_at', todayEnd.toISOString());
 
-    // Get medicines for low stock + total count
     const { data: medData, count: totalCatalog } = await supabase
       .from('medicines')
       .select('stock_qty, low_stock_threshold', { count: 'exact' });
