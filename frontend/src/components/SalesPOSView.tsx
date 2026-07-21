@@ -77,16 +77,14 @@ export default function SalesPOSView({
     setCart(cart.map(item => item.med.id === medId ? { ...item, discount: disc } : item));
   };
 
-  // Calculations – 15% Ethiopian VAT
+  // Calculations
   const subtotal = cart.reduce((acc, curr) => {
     const itemTotal = curr.qty * curr.med.sellingPrice;
     return acc + (itemTotal - curr.discount);
   }, 0);
 
   const discountAmount = Number(discountVal) || 0;
-  const taxRate = 0.15; // 15% VAT (Ethiopia)
-  const finalTax = Math.max(0, subtotal - discountAmount) * taxRate;
-  const totalVal = Math.max(0, subtotal - discountAmount) + finalTax;
+  const totalVal = Math.max(0, subtotal - discountAmount);
 
   const handleCheckout = () => {
     if (cart.length === 0) {
@@ -110,7 +108,6 @@ export default function SalesPOSView({
       items: saleItems,
       subtotal,
       discount: discountAmount,
-      tax: finalTax,
       total: totalVal,
       paymentMethod,
       id: `S-${Date.now().toString().slice(-5)}`,
@@ -133,7 +130,6 @@ export default function SalesPOSView({
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>{t('pos.subtitle')}</p>
         </div>
         <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-          <span className="badge badge-success" style={{ fontSize: '0.78rem' }}>15% VAT</span>
           <span className="badge badge-info" style={{ fontSize: '0.78rem' }}>ETB</span>
         </div>
       </div>
@@ -308,10 +304,6 @@ export default function SalesPOSView({
                   onChange={e => setDiscountVal(Number(e.target.value))}
                 />
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem' }}>
-                <span style={{ color: 'var(--text-secondary)' }}>VAT (15%)</span>
-                <span>{finalTax.toLocaleString(undefined, { maximumFractionDigits: 2 })} {ETB}</span>
-              </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1.1rem', fontWeight: 800, marginTop: '0.4rem', borderTop: '1px dashed var(--border-color)', paddingTop: '0.5rem' }}>
                 <span>{t('pos.totalAmount')}</span>
                 <span style={{ color: 'var(--accent-color)' }}>{totalVal.toLocaleString(undefined, { maximumFractionDigits: 2 })} {ETB}</span>
@@ -369,7 +361,6 @@ export default function SalesPOSView({
             <div style={{ fontSize: '0.8rem', display: 'flex', flexDirection: 'column', gap: '0.2rem', alignItems: 'flex-end', marginBottom: '1rem' }}>
               <div>Subtotal: {activeReceipt.subtotal.toLocaleString()} {ETB}</div>
               {activeReceipt.discount > 0 && <div>Discount: -{activeReceipt.discount.toLocaleString()} {ETB}</div>}
-              <div>VAT (15%): {activeReceipt.tax.toLocaleString(undefined, { maximumFractionDigits: 2 })} {ETB}</div>
               <div style={{ fontWeight: 'bold', fontSize: '0.95rem' }}>
                 TOTAL: {activeReceipt.total.toLocaleString(undefined, { maximumFractionDigits: 2 })} {ETB}
               </div>
