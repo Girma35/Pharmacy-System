@@ -182,7 +182,7 @@ export default function DashboardView({
               recentSales.map((sale) => (
                 <div key={sale.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '0.75rem', borderBottom: '1px solid var(--border-color)' }}>
                   <div>
-                    <span style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block' }}>{sale.id}</span>
+                    <span style={{ fontSize: '0.85rem', fontWeight: 600, display: 'block' }}>{sale.items.map(i => i.name).join(', ')}</span>
                     <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
                       {new Date(sale.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} • {sale.paymentMethod}
                     </span>
