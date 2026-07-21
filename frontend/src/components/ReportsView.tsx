@@ -1,175 +1,167 @@
-import React, { useState } from 'react';
-import { Sale, Medicine, PurchaseOrder } from '../data/mockData';
-import { FileDown, Calendar, BarChart3, TrendingUp, ShieldAlert, Award } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { Sale } from '../data/mockData';
+import { BarChart3, TrendingUp, DollarSign, ShoppingCart } from 'lucide-react';
 
 interface ReportsViewProps {
   sales: Sale[];
-  medicines: Medicine[];
-  purchases: PurchaseOrder[];
 }
 
-export default function ReportsView({
-  sales,
-  medicines,
-  purchases
-}: ReportsViewProps) {
-  const [reportPeriod, setReportPeriod] = useState<'Daily' | 'Weekly' | 'Monthly'>('Daily');
+type Period = 'Daily' | 'Weekly' | 'Monthly';
 
-  // Sales totals
-  const totalSalesCount = sales.length;
-  const grossRevenue = sales.reduce((acc, curr) => acc + curr.total, 0);
+export default function ReportsView({ sales }: ReportsViewProps) {
+  const [period, setPeriod] = useState<Period>('Daily');
 
-  // Profit estimation
-  const totalCost = sales.reduce((acc, sale) => {
-    return acc + sale.items.reduce((itemCost, item) => {
-      const medObj = medicines.find(m => m.id === item.medicineId);
-      const purchasePrice = medObj ? medObj.purchasePrice : 0;
-      return itemCost + (item.qty * purchasePrice);
-    }, 0);
-  }, 0);
+  const now = new Date();
 
-  const netProfit = Math.max(0, grossRevenue - totalCost);
-  const profitMargin = grossRevenue > 0 ? ((netProfit / grossRevenue) * 100).toFixed(1) : '0';
+  const filteredSales = useMemo(() => {
+    return sales.filter(sale => {
+      const saleDate = new Date(sale.createdAt);
+      const diffMs = now.getTime() - saleDate.getTime();
+      const diffDays = diffMs / (1000 * 60 * 60 * 24);
 
-  // Best selling medicines
-  const medicineSalesQty: { [name: string]: number } = {};
-  sales.forEach(sale => {
-    sale.items.forEach(item => {
-      medicineSalesQty[item.name] = (medicineSalesQty[item.name] || 0) + item.qty;
+      switch (period) {
+        case 'Daily': return diffDays < 1;
+        case 'Weekly': return diffDays < 7;
+        case 'Monthly': return diffDays < 30;
+        default: return true;
+      }
     });
-  });
+  }, [sales, period]);
 
-  const bestSellers = Object.entries(medicineSalesQty)
-    .map(([name, qty]) => ({ name, qty }))
-    .sort((a, b) => b.qty - a.qty)
-    .slice(0, 5);
+  const totalRevenue = filteredSales.reduce((sum, s) => sum + s.total, 0);
+  const totalTransactions = filteredSales.length;
 
-  const maxBestSellerQty = bestSellers[0]?.qty || 1;
-
-  // Inventory stats
-  const totalMedicines = medicines.length;
-  const totalStockQty = medicines.reduce((acc, m) => acc + m.stockQty, 0);
-  const lowStockQty = medicines.filter(m => m.stockQty <= m.lowStockThreshold).length;
-
-  const handleExport = () => {
-    alert(`Exporting ${reportPeriod} Report. PDF file download simulated successfully!`);
-  };
+  const periodButtons: { value: Period; label: string }[] = [
+    { value: 'Daily', label: 'Daily' },
+    { value: 'Weekly', label: 'Weekly' },
+    { value: 'Monthly', label: 'Monthly' },
+  ];
 
   return (
     <div>
       <div className="top-header">
         <div>
-          <h2>Analytics & Financial Reports</h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Review daily sales, margin profit, best sellers, and stock health audits</p>
+          <h2 style={{ fontSize: '1.5rem' }}>Sales Report</h2>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+            {totalTransactions} sale{totalTransactions !== 1 ? 's' : ''} this period
+          </p>
         </div>
-        <div style={{ display: 'flex', gap: '0.75rem' }}>
-          <select className="form-control" style={{ width: '140px' }} value={reportPeriod} onChange={e => setReportPeriod(e.target.value as any)}>
-            <option value="Daily">Daily Report</option>
-            <option value="Weekly">Weekly Report</option>
-            <option value="Monthly">Monthly Report</option>
-          </select>
-          <button onClick={handleExport} className="btn btn-primary">
-            <FileDown size={16} />
-            Export PDF
+      </div>
+
+      {/* Big filter buttons */}
+      <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '2rem' }}>
+        {periodButtons.map(btn => (
+          <button
+            key={btn.value}
+            onClick={() => setPeriod(btn.value)}
+            style={{
+              flex: 1,
+              padding: '1rem',
+              fontSize: '1.1rem',
+              fontWeight: 700,
+              border: 'none',
+              borderRadius: 'var(--radius-md)',
+              cursor: 'pointer',
+              backgroundColor: period === btn.value ? 'var(--accent-color)' : '#e2e8f0',
+              color: period === btn.value ? '#fff' : 'var(--text-primary)',
+              transition: 'all 0.2s',
+              boxShadow: period === btn.value ? '0 4px 12px rgba(13,148,136,0.3)' : 'none'
+            }}
+            onMouseEnter={e => { if (period !== btn.value) e.currentTarget.style.backgroundColor = '#cbd5e1'; }}
+            onMouseLeave={e => { if (period !== btn.value) e.currentTarget.style.backgroundColor = '#e2e8f0'; }}
+          >
+            {btn.label}
           </button>
+        ))}
+      </div>
+
+      {/* Big stat cards */}
+      <div className="grid-4">
+        <div className="card stat-card">
+          <div className="stat-icon" style={{ backgroundColor: 'var(--success)', width: '60px', height: '60px' }}>
+            <DollarSign size={28} />
+          </div>
+          <div>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Total Revenue</p>
+            <h2 style={{ fontSize: '1.8rem', color: 'var(--success)' }}>${totalRevenue.toFixed(2)}</h2>
+          </div>
+        </div>
+
+        <div className="card stat-card">
+          <div className="stat-icon" style={{ backgroundColor: 'var(--info)', width: '60px', height: '60px' }}>
+            <ShoppingCart size={28} />
+          </div>
+          <div>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Transactions</p>
+            <h2 style={{ fontSize: '1.8rem' }}>{totalTransactions}</h2>
+          </div>
+        </div>
+
+        <div className="card stat-card">
+          <div className="stat-icon" style={{ backgroundColor: 'var(--accent-color)', width: '60px', height: '60px' }}>
+            <TrendingUp size={28} />
+          </div>
+          <div>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Avg per Sale</p>
+            <h2 style={{ fontSize: '1.8rem' }}>
+              ${totalTransactions > 0 ? (totalRevenue / totalTransactions).toFixed(2) : '0.00'}
+            </h2>
+          </div>
+        </div>
+
+        <div className="card stat-card">
+          <div className="stat-icon" style={{ backgroundColor: 'var(--warning)', width: '60px', height: '60px' }}>
+            <BarChart3 size={28} />
+          </div>
+          <div>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Total Sales</p>
+            <h2 style={{ fontSize: '1.8rem' }}>{filteredSales.reduce((sum, s) => sum + s.items.length, 0)} items</h2>
+          </div>
         </div>
       </div>
 
-      <div className="grid-4" style={{ marginBottom: '2.5rem' }}>
-        <div className="card stat-card">
-          <div className="stat-icon" style={{ backgroundColor: 'var(--success)' }}>
-            <TrendingUp size={24} />
-          </div>
-          <div>
-            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Gross Revenue</p>
-            <h3>${grossRevenue.toFixed(2)}</h3>
-            <p style={{ fontSize: '0.75rem', color: 'var(--success)' }}>Active Period Total</p>
-          </div>
-        </div>
-
-        <div className="card stat-card">
-          <div className="stat-icon" style={{ backgroundColor: 'var(--info)' }}>
-            <BarChart3 size={24} />
-          </div>
-          <div>
-            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Est. Net Profit</p>
-            <h3>${netProfit.toFixed(2)}</h3>
-            <p style={{ fontSize: '0.75rem', color: 'var(--success)' }}>{profitMargin}% net margin</p>
-          </div>
-        </div>
-
-        <div className="card stat-card">
-          <div className="stat-icon" style={{ backgroundColor: 'var(--danger)' }}>
-            <ShieldAlert size={24} />
-          </div>
-          <div>
-            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Low Stock Alert</p>
-            <h3>{lowStockQty} items</h3>
-            <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>Below minimum trigger</p>
-          </div>
-        </div>
-
-        <div className="card stat-card">
-          <div className="stat-icon" style={{ backgroundColor: 'var(--primary-hover)' }}>
-            <Award size={24} />
-          </div>
-          <div>
-            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Best Selling Item</p>
-            <h3>{bestSellers[0]?.name || 'N/A'}</h3>
-            <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{bestSellers[0]?.qty || 0} units sold</p>
-          </div>
-        </div>
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
-        {/* Best Sellers Chart */}
-        <div className="card">
-          <h3 style={{ marginBottom: '1.25rem' }}>Top 5 Best-Selling Medicines</h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            {bestSellers.length === 0 ? (
-              <p style={{ color: 'var(--text-secondary)', textAlign: 'center', padding: '2rem' }}>No sales data logged yet.</p>
-            ) : (
-              bestSellers.map((med, idx) => {
-                const widthPercent = `${(med.qty / maxBestSellerQty) * 100}%`;
-                return (
-                  <div key={idx}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.25rem' }}>
-                      <span>{med.name}</span>
-                      <span>{med.qty} units</span>
-                    </div>
-                    <div style={{ width: '100%', height: '8px', backgroundColor: '#f1f5f9', borderRadius: '4px', overflow: 'hidden' }}>
-                      <div style={{ width: widthPercent, height: '100%', backgroundColor: 'var(--accent-color)', borderRadius: '4px' }} />
-                    </div>
+      {/* Recent sales list */}
+      {filteredSales.length > 0 && (
+        <div className="card" style={{ marginTop: '1.5rem' }}>
+          <h3 style={{ marginBottom: '1rem', fontSize: '1.1rem' }}>
+            {period} Transactions
+          </h3>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            {filteredSales.slice(0, 10).map(sale => (
+              <div
+                key={sale.id}
+                style={{
+                  padding: '0.75rem 1rem',
+                  backgroundColor: '#f8fafc',
+                  borderRadius: 'var(--radius-sm)',
+                  borderLeft: '4px solid var(--accent-color)'
+                }}
+              >
+                {sale.items.map((item, idx) => (
+                  <div key={idx} style={{ fontSize: '0.85rem', color: 'var(--text-primary)', marginLeft: '0.5rem' }}>
+                    {item.name} x{item.qty}
                   </div>
-                );
-              })
-            )}
+                ))}
+                <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '0.25rem', marginLeft: '0.5rem' }}>
+                  {new Date(sale.createdAt).toLocaleDateString('en-GB')} {new Date(sale.createdAt).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.25rem', marginLeft: '0.5rem' }}>
+                  <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{sale.paymentMethod}</span>
+                  <span style={{ fontWeight: 700, color: 'var(--success)', fontSize: '1rem' }}>+${sale.total.toFixed(2)}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
+      )}
 
-        {/* Audit Period Summary */}
-        <div className="card">
-          <h3 style={{ marginBottom: '1.25rem' }}>Active Period Audit Summary</h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '0.5rem', borderBottom: '1px solid var(--border-color)', fontSize: '0.9rem' }}>
-              <span style={{ color: 'var(--text-secondary)' }}>Total Sales Transactions:</span>
-              <strong>{totalSalesCount}</strong>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '0.5rem', borderBottom: '1px solid var(--border-color)', fontSize: '0.9rem' }}>
-              <span style={{ color: 'var(--text-secondary)' }}>Registered Drugs cataloged:</span>
-              <strong>{totalMedicines}</strong>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '0.5rem', borderBottom: '1px solid var(--border-color)', fontSize: '0.9rem' }}>
-              <span style={{ color: 'var(--text-secondary)' }}>Total Inventory Units in Stock:</span>
-              <strong>{totalStockQty}</strong>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '0.5rem', borderBottom: '1px solid var(--border-color)', fontSize: '0.9rem' }}>
-              <span style={{ color: 'var(--text-secondary)' }}>Total Procurement Purchases:</span>
-              <strong>{purchases.length}</strong>
-            </div>
-          </div>
+      {filteredSales.length === 0 && (
+        <div className="card" style={{ textAlign: 'center', padding: '3rem', marginTop: '1.5rem' }}>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}>
+            No sales in this period
+          </p>
         </div>
-      </div>
+      )}
     </div>
   );
 }

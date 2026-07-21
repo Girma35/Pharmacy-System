@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { 
   LayoutDashboard, 
   Pill, 
@@ -21,17 +22,19 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ currentTab, setCurrentTab, currentUser, onLogout }: SidebarProps) {
+  const { t } = useTranslation();
+
   const menuItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard, roles: ['Admin', 'Pharmacist', 'Cashier'] },
-    { id: 'medicines', label: 'Medicines', icon: Pill, roles: ['Admin', 'Pharmacist'] },
-    { id: 'sales-pos', label: 'POS / Sales', icon: ShoppingCart, roles: ['Admin', 'Pharmacist', 'Cashier'] },
-    { id: 'inventory', label: 'Inventory', icon: Boxes, roles: ['Admin', 'Pharmacist'] },
-    { id: 'suppliers', label: 'Suppliers', icon: Truck, roles: ['Admin', 'Pharmacist'] },
-    { id: 'customers', label: 'Customers', icon: Users, roles: ['Admin', 'Pharmacist', 'Cashier'] },
-    { id: 'prescriptions', label: 'Prescriptions', icon: FileText, roles: ['Admin', 'Pharmacist'] },
-    { id: 'reports', label: 'Reports', icon: BarChart3, roles: ['Admin'] },
-    { id: 'users', label: 'Users', icon: UserCog, roles: ['Admin'] },
-    { id: 'settings', label: 'Settings', icon: SettingsIcon, roles: ['Admin'] },
+    { id: 'dashboard', labelKey: 'nav.dashboard', icon: LayoutDashboard, roles: ['Admin', 'Cashier'] },
+    { id: 'medicines', labelKey: 'nav.medicines', icon: Pill, roles: ['Admin'] },
+    { id: 'sales-pos', labelKey: 'nav.sales', icon: ShoppingCart, roles: ['Admin', 'Pharmacist', 'Cashier'] },
+    { id: 'inventory', labelKey: 'nav.inventory', icon: Boxes, roles: ['Admin'] },
+    { id: 'suppliers', labelKey: 'nav.suppliers', icon: Truck, roles: ['Admin'] },
+    { id: 'customers', labelKey: 'nav.customers', icon: Users, roles: ['Admin', 'Pharmacist', 'Cashier'] },
+    { id: 'prescriptions', labelKey: 'nav.prescriptions', icon: FileText, roles: ['Admin'] },
+    { id: 'reports', labelKey: 'nav.reports', icon: BarChart3, roles: ['Admin', 'Pharmacist', 'Cashier'] },
+    { id: 'users', labelKey: 'nav.users', icon: UserCog, roles: ['Admin'] },
+    { id: 'settings', labelKey: 'nav.settings', icon: SettingsIcon, roles: ['Admin'] },
   ];
 
   const filteredItems = menuItems.filter(item => item.roles.includes(currentUser.role));
@@ -40,7 +43,7 @@ export default function Sidebar({ currentTab, setCurrentTab, currentUser, onLogo
     <aside className="sidebar">
       <div className="logo-section">
         <Pill className="logo-icon" size={28} />
-        <span>PharmaCare</span>
+        <span>{t('app.title')}</span>
       </div>
 
       <ul className="nav-links">
@@ -53,7 +56,7 @@ export default function Sidebar({ currentTab, setCurrentTab, currentUser, onLogo
                 className={`nav-item ${currentTab === item.id ? 'active' : ''}`}
               >
                 <Icon size={20} />
-                <span>{item.label}</span>
+                <span>{t(item.labelKey)}</span>
               </a>
             </li>
           );
@@ -63,11 +66,11 @@ export default function Sidebar({ currentTab, setCurrentTab, currentUser, onLogo
       <div style={{ marginTop: 'auto', borderTop: '1px solid #1e293b', paddingTop: '1.5rem' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', marginBottom: '1rem' }}>
           <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'white' }}>{currentUser.name}</span>
-          <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>{currentUser.role}</span>
+          <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>{t('auth.' + currentUser.role.toLowerCase())}</span>
         </div>
         <button onClick={onLogout} className="btn btn-secondary" style={{ width: '100%', justifyContent: 'center', backgroundColor: '#1e293b', color: '#ef4444', border: 'none' }}>
           <LogOut size={16} />
-          <span>Sign Out</span>
+          <span>{t('auth.signOut')}</span>
         </button>
       </div>
     </aside>
