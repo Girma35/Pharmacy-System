@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { 
   LayoutDashboard, 
@@ -11,7 +11,9 @@ import {
   BarChart3, 
   UserCog, 
   Settings as SettingsIcon, 
-  LogOut 
+  LogOut,
+  Menu,
+  X
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -23,6 +25,7 @@ interface SidebarProps {
 
 export default function Sidebar({ currentTab, setCurrentTab, currentUser, onLogout }: SidebarProps) {
   const { t } = useTranslation();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const menuItems = [
     { id: 'dashboard', labelKey: 'nav.dashboard', icon: LayoutDashboard, roles: ['Admin', 'Cashier'] },
@@ -39,40 +42,61 @@ export default function Sidebar({ currentTab, setCurrentTab, currentUser, onLogo
 
   const filteredItems = menuItems.filter(item => item.roles.includes(currentUser.role));
 
+  const handleNavClick = (tabId: string) => {
+    setCurrentTab(tabId);
+    setMobileOpen(false); // auto-close on mobile
+  };
+
   return (
-    <aside className="sidebar">
-      <div className="logo-section">
-        <Pill className="logo-icon" size={28} />
-        <span>{t('app.title')}</span>
-      </div>
+    <>
+      {/* Mobile hamburger button */}
+      <button
+        className="mobile-menu-btn"
+        onClick={() => setMobileOpen(!mobileOpen)}
+        aria-label="Toggle menu"
+      >
+        {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
 
-      <ul className="nav-links">
-        {filteredItems.map((item) => {
-          const Icon = item.icon;
-          return (
-            <li key={item.id}>
-              <a
-                onClick={() => setCurrentTab(item.id)}
-                className={`nav-item ${currentTab === item.id ? 'active' : ''}`}
-              >
-                <Icon size={20} />
-                <span>{t(item.labelKey)}</span>
-              </a>
-            </li>
-          );
-        })}
-      </ul>
+      {/* Overlay for mobile */}
+      {mobileOpen && (
+        <div className="sidebar-overlay" onClick={() => setMobileOpen(false)} />
+      )}
 
-      <div style={{ marginTop: 'auto', borderTop: '1px solid #1e293b', paddingTop: '1.5rem' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', marginBottom: '1rem' }}>
-          <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'white' }}>{currentUser.name}</span>
-          <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>{t('auth.' + currentUser.role.toLowerCase())}</span>
+      <aside className={`sidebar ${mobileOpen ? 'sidebar-open' : ''}`}>
+        <div className="logo-section">
+          <Pill className="logo-icon" size={28} />
+          <span>{t('app.title')}</span>
         </div>
-        <button onClick={onLogout} className="btn btn-secondary" style={{ width: '100%', justifyContent: 'center', backgroundColor: '#1e293b', color: '#ef4444', border: 'none' }}>
-          <LogOut size={16} />
-          <span>{t('auth.signOut')}</span>
-        </button>
-      </div>
-    </aside>
+
+        <ul className="nav-links">
+          {filteredItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <li key={item.id}>
+                <a
+                  onClick={() => handleNavClick(item.id)}
+                  className={`nav-item ${currentTab === item.id ? 'active' : ''}`}
+                >
+                  <Icon size={20} />
+                  <span>{t(item.labelKey)}</span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+
+        <div style={{ marginTop: 'auto', borderTop: '1px solid #1e293b', paddingTop: '1.5rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', marginBottom: '1rem' }}>
+            <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'white' }}>{currentUser.name}</span>
+            <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>{t('auth.' + currentUser.role.toLowerCase())}</span>
+          </div>
+          <button onClick={onLogout} className="btn btn-secondary" style={{ width: '100%', justifyContent: 'center', backgroundColor: '#1e293b', color: '#ef4444', border: 'none' }}>
+            <LogOut size={16} />
+            <span>{t('auth.signOut')}</span>
+          </button>
+        </div>
+      </aside>
+    </>
   );
 }

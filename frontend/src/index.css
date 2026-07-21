@@ -519,3 +519,231 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(13, 148, 136, 0.3);
 }
+
+/* ===== Mobile Menu Button ===== */
+.mobile-menu-btn {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1100;
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.6rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+}
+
+/* ===== Sidebar Overlay ===== */
+.sidebar-overlay {
+  display: none;
+}
+
+/* ===== RESPONSIVE: Tablet (≤1024px) ===== */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 220px;
+    padding: 1.25rem;
+  }
+
+  .main-content {
+    padding: 1.5rem;
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .custom-table {
+    min-width: 700px;
+  }
+}
+
+/* ===== RESPONSIVE: Mobile (≤768px) ===== */
+@media (max-width: 768px) {
+  /* Show mobile menu button */
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Sidebar: hidden by default, slide-in when open */
+  .sidebar {
+    position: fixed;
+    left: -280px;
+    top: 0;
+    width: 260px;
+    height: 100vh;
+    z-index: 1050;
+    transition: left 0.3s ease;
+  }
+
+  .sidebar.sidebar-open {
+    left: 0;
+  }
+
+  /* Overlay behind sidebar */
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+  }
+
+  /* Main content takes full width */
+  .app-container {
+    flex-direction: column;
+  }
+
+  .main-content {
+    padding: 1rem;
+    padding-top: 4rem; /* space for hamburger */
+  }
+
+  /* Header */
+  .top-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  /* Stat Cards */
+  .grid-4 {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  .stat-card {
+    padding: 0.875rem !important;
+  }
+
+  .stat-card h3, .stat-card h2 {
+    font-size: 1.2rem !important;
+  }
+
+  .stat-icon {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  /* Dashboard grid */
+  div[style*="grid-template-columns: 2fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* POS layout */
+  div[style*="grid-template-columns: 1.2fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Medicine grid in POS */
+  div[style*="gridTemplateColumns: '1fr 1fr'"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Tables */
+  .table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -1rem;
+    padding: 0 1rem;
+  }
+
+  .custom-table {
+    min-width: 600px;
+    font-size: 0.82rem;
+  }
+
+  /* Cards */
+  .card {
+    padding: 1rem !important;
+  }
+
+  /* Login card */
+  .login-card {
+    margin: 1rem;
+    padding: 2rem 1.5rem;
+    max-width: 100%;
+  }
+
+  /* Forms */
+  .form-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Modals */
+  .modal-content {
+    width: 95% !important;
+    max-width: 95% !important;
+    margin: 1rem;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  /* Filter bars */
+  div[style*="display: flex"][style*="gap: '1rem'"] {
+    flex-wrap: wrap;
+  }
+
+  /* Report period buttons */
+  div[style*="display: flex"][style*="gap: '0.75rem'"] {
+    flex-wrap: wrap;
+  }
+}
+
+/* ===== RESPONSIVE: Small Phone (≤480px) ===== */
+@media (max-width: 480px) {
+  .main-content {
+    padding: 0.75rem;
+    padding-top: 4rem;
+  }
+
+  .grid-4 {
+    grid-template-columns: 1fr !important;
+  }
+
+  .login-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .login-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .login-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+  }
+
+  .btn-block {
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  .top-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .card {
+    padding: 0.875rem !important;
+  }
+
+  .custom-table {
+    min-width: 500px;
+    font-size: 0.78rem;
+  }
+
+  .custom-table th, .custom-table td {
+    padding: 0.5rem 0.4rem;
+  }
+}
