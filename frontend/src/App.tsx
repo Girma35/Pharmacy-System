@@ -306,6 +306,7 @@ export default function App() {
               <InventoryView 
                 medicines={medicines} 
                 inventoryLogs={inventoryLogs}
+                onAdjustStock={() => {}}
               />
             )}
             {currentTab === 'suppliers' && <SuppliersView suppliers={suppliers} purchaseOrders={purchases} medicines={medicines} onAddSupplier={() => {}} onAddPurchaseOrder={() => {}} onPaySupplier={() => {}} />}
