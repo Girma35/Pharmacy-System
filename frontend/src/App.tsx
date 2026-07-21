@@ -183,24 +183,34 @@ export default function App() {
     try {
       const payload = {
         ...newSale,
-        userId: currentUser?.id
+        userId: currentUser?.id,
+        tax: 0  // no tax in this system — cashier receives payment manually
       };
-      
+
+      const token = localStorage.getItem('auth_token');
       const res = await fetch('/api/sales', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+        },
         body: JSON.stringify(payload)
       });
-      
-      if (!res.ok) throw new Error('Checkout failed');
-      
-      // Refresh medicines to get updated stock and refresh sales
+
+      if (!res.ok) {
+        const errBody = await res.json().catch(() => ({}));
+        console.error('Sale error:', errBody);
+        throw new Error(errBody.error || 'Checkout failed');
+      }
+
+      // Refresh medicines to get updated stock and sales list
       fetchData();
     } catch (err) {
       console.error(err);
       alert('Error processing sale checkout');
     }
   };
+
 
   const handleAddPurchase = (newPo: PurchaseOrder) => {
     setPurchases([...purchases, newPo]);
