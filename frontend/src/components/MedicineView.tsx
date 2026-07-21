@@ -126,11 +126,11 @@ export default function MedicineView({
 
   const filteredMedicines = medicines.filter(m => {
     const matchesSearch =
-      m.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      m.barcode.includes(searchTerm) ||
-      m.batchNo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      m.formAndStrength.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      m.category.toLowerCase().includes(searchTerm.toLowerCase());
+      (m.name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (m.barcode || '').includes(searchTerm) ||
+      (m.batchNo || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (m.formAndStrength || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (m.category || '').toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'All' || m.category === selectedCategory;
     const matchesStorage = storageFilter === 'All' || m.storageCondition === storageFilter;
     return matchesSearch && matchesCategory && matchesStorage;

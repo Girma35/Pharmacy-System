@@ -40,10 +40,10 @@ export default function SalesPOSView({
   // Search medicines with stock > 0
   const filteredMeds = medicines.filter(m =>
     m.stockQty > 0 &&
-    (m.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      m.formAndStrength.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      m.barcode.includes(searchTerm) ||
-      m.category.toLowerCase().includes(searchTerm.toLowerCase()))
+    ((m.name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (m.formAndStrength || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (m.barcode || '').includes(searchTerm) ||
+      (m.category || '').toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
   const addToCart = (med: Medicine) => {
