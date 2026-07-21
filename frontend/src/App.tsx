@@ -26,7 +26,7 @@ import {
   SystemSettings,
   defaultSettings
 } from './data/mockData';
-import { Pill, Lock, Mail } from 'lucide-react';
+import { Pill, Lock, Mail, Users } from 'lucide-react';
 
 export default function App() {
   const { t } = useTranslation();
@@ -36,6 +36,7 @@ export default function App() {
 
   // Auth State
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [loginRole, setLoginRole] = useState<'Admin' | 'Pharmacist' | 'Cashier'>('Pharmacist');
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [loginError, setLoginError] = useState('');
@@ -69,7 +70,7 @@ export default function App() {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: loginEmail, password: loginPassword })
+        body: JSON.stringify({ email: loginEmail, password: loginPassword, role: loginRole })
       });
       
       if (!res.ok) {
@@ -228,6 +229,20 @@ export default function App() {
                 {loginError}
               </div>
             )}
+
+            <div className="form-group">
+              <label><Users size={16} /> {t('auth.role') || 'Select Role'}</label>
+              <select
+                required
+                className="form-control"
+                value={loginRole}
+                onChange={e => setLoginRole(e.target.value as any)}
+              >
+                <option value="Admin">{t('auth.admin')}</option>
+                <option value="Pharmacist">{t('auth.pharmacist')}</option>
+                <option value="Cashier">{t('auth.cashier')}</option>
+              </select>
+            </div>
             
             <div className="form-group">
               <label><Mail size={16} /> {t('auth.email')}</label>
