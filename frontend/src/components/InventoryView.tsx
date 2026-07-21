@@ -24,7 +24,7 @@ export default function InventoryView({
     setSelectedMedId(medId || medicines[0]?.id || '');
     setAdjustQty(0);
     setAdjustType('Stock In');
-    setAdjustReason('');
+    setAdjustReason('Expired batch removal');
     setIsModalOpen(true);
   };
 
@@ -206,7 +206,16 @@ export default function InventoryView({
 
               <div className="form-group">
                 <label>Detailed Reason / Description</label>
-                <textarea required rows={3} className="form-control" placeholder="e.g. Expired batch removal, physical inventory count correction..." value={adjustReason} onChange={e => setAdjustReason(e.target.value)} />
+                <select required className="form-control" value={adjustReason} onChange={e => setAdjustReason(e.target.value)}>
+                  <option value="" disabled>Select a reason...</option>
+                  <option value="Expired batch removal">Expired batch removal</option>
+                  <option value="Physical inventory count correction">Physical inventory count correction</option>
+                  <option value="Damaged packaging">Damaged packaging</option>
+                  <option value="Restock from supplier">Restock from supplier</option>
+                  <option value="Return to supplier">Return to supplier</option>
+                  <option value="Theft / loss">Theft / loss</option>
+                  <option value="Sample testing / quality check">Sample testing / quality check</option>
+                </select>
               </div>
 
               <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end', marginTop: '1.5rem' }}>

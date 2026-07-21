@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Sidebar from './components/Sidebar';
+import LanguageSelectionScreen from './components/LanguageSelectionScreen';
+import LanguageSwitcher from './components/LanguageSwitcher';
 import DashboardView from './components/DashboardView';
 import MedicineView from './components/MedicineView';
 import SalesPOSView from './components/SalesPOSView';
@@ -34,8 +37,13 @@ import {
 import { Pill, Lock, Mail } from 'lucide-react';
 
 export default function App() {
+  const { t } = useTranslation();
+
+  // Language selection state (shown before login)
+  const [languageSelected, setLanguageSelected] = useState(() => !!localStorage.getItem('pharmacy-language'));
+
   // Auth State
-  const [currentUser, setCurrentUser] = useState<User | null>(initialUsers[0]); // Auto-login as Jane Foster (Admin) for instant preview
+  const [currentUser, setCurrentUser] = useState<User | null>(initialUsers[0]);
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [loginError, setLoginError] = useState('');
@@ -54,6 +62,11 @@ export default function App() {
   const [inventoryLogs, setInventoryLogs] = useState<InventoryLog[]>(initialInventoryLogs);
   const [settings, setSettings] = useState<SystemSettings>(defaultSettings);
 
+  // Show Language Selection first
+  if (!languageSelected) {
+    return <LanguageSelectionScreen onLanguageSelected={() => setLanguageSelected(true)} />;
+  }
+
   // Auth Submit Action
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -61,14 +74,13 @@ export default function App() {
     if (foundUser) {
       setCurrentUser(foundUser);
       setLoginError('');
-      // Set default landing tab based on role permissions
-      if (foundUser.role === 'Cashier') {
+      if (foundUser.role === 'Cashier' || foundUser.role === 'Pharmacist') {
         setCurrentTab('sales-pos');
       } else {
         setCurrentTab('dashboard');
       }
     } else {
-      setLoginError('Invalid email or inactive staff account.');
+      setLoginError(t('auth.error'));
     }
   };
 
@@ -85,8 +97,6 @@ export default function App() {
       id: (medicines.length + 1).toString()
     };
     setMedicines([...medicines, med]);
-    
-    // Add Inventory Log
     const newLog: InventoryLog = {
       id: (inventoryLogs.length + 1).toString(),
       medicineId: med.id,
@@ -116,7 +126,6 @@ export default function App() {
     };
     setSales(prev => [...prev, sale]);
 
-    // Update stock levels & logs for each sold item
     newSale.items.forEach((item: any) => {
       setMedicines(prevMeds => prevMeds.map(m => {
         if (m.id === item.medicineId) {
@@ -126,7 +135,6 @@ export default function App() {
         return m;
       }));
 
-      // Log stock out
       setInventoryLogs(prevLogs => {
         const nextId = (prevLogs.length + 1).toString();
         const newLog: InventoryLog = {
@@ -135,7 +143,7 @@ export default function App() {
           medicineName: item.name,
           type: 'Stock Out',
           qty: -item.qty,
-          reason: `Sale ${sale.id} transaction`,
+          reason: `Sale: ${item.name}`,
           userName: currentUser?.name || 'System',
           createdAt: new Date().toISOString()
         };
@@ -143,7 +151,6 @@ export default function App() {
       });
     });
 
-    // Update customer loyalty points if customer selected
     if (newSale.customerId) {
       setCustomers(prevCusts => prevCusts.map(c => {
         if (c.id === newSale.customerId) {
@@ -187,8 +194,6 @@ export default function App() {
       id: `PO-${(purchases.length + 5001).toString()}`
     };
     setPurchases(prev => [...prev, po]);
-
-    // Update supplier outstanding balance
     setSuppliers(prevSups => prevSups.map(s => {
       if (s.id === po.supplierId) {
         return { ...s, balance: s.balance + po.total };
@@ -253,6 +258,7 @@ export default function App() {
             customers={customers}
             prescriptions={prescriptions}
             onAddSale={handleAddSale}
+            onViewReport={() => setCurrentTab('reports')}
           />
         );
       case 'inventory':
@@ -295,8 +301,6 @@ export default function App() {
         return (
           <ReportsView
             sales={sales}
-            medicines={medicines}
-            purchases={purchases}
           />
         );
       case 'users':
@@ -328,8 +332,14 @@ export default function App() {
         alignItems: 'center',
         justifyContent: 'center',
         background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
-        padding: '1rem'
+        padding: '1rem',
+        position: 'relative'
       }}>
+        {/* Language Switcher in top-right corner */}
+        <div style={{ position: 'absolute', top: '1rem', right: '1rem' }}>
+          <LanguageSwitcher />
+        </div>
+
         <div className="card" style={{ width: '100%', maxWidth: '420px', padding: '2.5rem', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-lg)' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '2rem' }}>
             <div style={{
@@ -345,9 +355,9 @@ export default function App() {
             }}>
               <Pill size={32} />
             </div>
-            <h2 style={{ color: '#0f172a', fontWeight: 800 }}>PharmaCare Sign In</h2>
+            <h2 style={{ color: '#0f172a', fontWeight: 800 }}>{t('app.title')} {t('auth.signIn')}</h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', textAlign: 'center', marginTop: '0.25rem' }}>
-              Access the Pharmacy Operations Management System
+              {t('app.tagline')}
             </p>
           </div>
 
@@ -358,14 +368,14 @@ export default function App() {
               </div>
             )}
             <div className="form-group">
-              <label>Staff Email Address</label>
+              <label>{t('auth.email')}</label>
               <div style={{ position: 'relative' }}>
                 <Mail size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)' }} />
                 <input
                   required
                   type="email"
                   className="form-control"
-                  placeholder="jane@pharmacy.com"
+                  placeholder={t('auth.emailPlaceholder')}
                   style={{ paddingLeft: '2.5rem' }}
                   value={loginEmail}
                   onChange={e => setLoginEmail(e.target.value)}
@@ -374,14 +384,14 @@ export default function App() {
             </div>
 
             <div className="form-group">
-              <label>Password PIN</label>
+              <label>{t('auth.password')}</label>
               <div style={{ position: 'relative' }}>
                 <Lock size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)' }} />
                 <input
                   required
                   type="password"
                   className="form-control"
-                  placeholder="••••••••"
+                  placeholder={t('auth.passwordPlaceholder')}
                   style={{ paddingLeft: '2.5rem' }}
                   value={loginPassword}
                   onChange={e => setLoginPassword(e.target.value)}
@@ -390,19 +400,18 @@ export default function App() {
             </div>
 
             <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '0.75rem', fontSize: '0.95rem', fontWeight: 'bold', marginTop: '0.5rem' }}>
-              Sign In
+              {t('auth.signIn')}
             </button>
           </form>
 
-          {/* Quick login credentials list */}
           <div style={{ marginTop: '2rem', borderTop: '1px solid var(--border-color)', paddingTop: '1rem' }}>
             <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', textAlign: 'center', marginBottom: '0.5rem' }}>
-              Demo Staff Accounts:
+              {t('auth.demoAccounts')}
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
-              <div>• <strong>Admin:</strong> jane@pharmacy.com (Password: any)</div>
-              <div>• <strong>Pharmacist:</strong> mark@pharmacy.com (Password: any)</div>
-              <div>• <strong>Cashier:</strong> lucy@pharmacy.com (Password: any)</div>
+              <div>• <strong>{t('auth.admin')}:</strong> jane@pharmacy.com ({t('auth.passwordHint')})</div>
+              <div>• <strong>{t('auth.pharmacist')}:</strong> mark@pharmacy.com ({t('auth.passwordHint')})</div>
+              <div>• <strong>{t('auth.cashier')}:</strong> lucy@pharmacy.com ({t('auth.passwordHint')})</div>
             </div>
           </div>
         </div>
@@ -420,6 +429,9 @@ export default function App() {
         onLogout={handleLogout}
       />
       <main className="main-content">
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '0.5rem' }}>
+          <LanguageSwitcher />
+        </div>
         {renderTabContent()}
       </main>
     </div>
