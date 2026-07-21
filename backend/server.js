@@ -389,7 +389,7 @@ app.get('/api/prescriptions', async (req, res) => {
 
 // POST save new sales checkout transactions
 app.post('/api/sales', async (req, res) => {
-  const { customerId, userId, subtotal, discount, total, paymentMethod, items } = req.body;
+  const { customerId, userId, subtotal, discount, tax, total, paymentMethod, items } = req.body;
 
   try {
     // Insert the sale record
@@ -400,8 +400,9 @@ app.post('/api/sales', async (req, res) => {
         user_id: userId ? Number(userId) : null,
         subtotal,
         discount: discount || 0,
+        tax: tax || 0,
         total,
-        payment_method: paymentMethod
+        payment_method: paymentMethod || 'Cash'
       })
       .select('id')
       .single();
