@@ -141,7 +141,7 @@ export default function CustomersView({
                 activeCustSales.map(sale => (
                   <div key={sale.id} style={{ border: '1px solid var(--border-color)', borderRadius: 'var(--radius-md)', padding: '1rem', background: '#f8fafc' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                      <strong>{sale.id}</strong>
+                      <strong>{sale.items.map(i => i.name).join(', ')}</strong>
                       <span>{new Date(sale.createdAt).toLocaleDateString()}</span>
                     </div>
                     <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.5rem' }}>
